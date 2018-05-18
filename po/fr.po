@@ -1,13 +1,14 @@
 # Wdes Account manager translation.
-# Copyright (C) (C) 2018 - %2018 William Desportes
-# This file is distributed under the same license as the wdes/account-manager 1.0.0-alpha1 package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, (C) 2018 - %2018.
+# Copyright (C) 2018 William Desportes
+# This file is distributed under the license http://unlicense.org/UNLICENSE
+# William Desportes <williamdes@wdes.fr>
+#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: wdes/account-manager 1.0.0-alpha1\n"
 "Report-Msgid-Bugs-To: williamdes@wdes.fr\n"
-"POT-Creation-Date: 2018-05-18 22:22+0200\n"
+"POT-Creation-Date: 2018-05-19 00:17+0200\n"
 "PO-Revision-Date: 2018-05-17 12:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"

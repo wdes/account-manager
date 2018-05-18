@@ -21,14 +21,32 @@ $twig->addExtension(new AccountManager\Twig\I18nExtension());
 $mappings = new stdClass();
 $mappings->mappings = array();
 $mappings->replacements = array();
+
+$license = new stdClass();
+$license->from = "This file is distributed under the same license as the PACKAGE package.";
+$license->to = "This file is distributed under the license http://unlicense.org/UNLICENSE";
+$mappings->replacements[] = $license;
+
+$license = new stdClass();
+$license->from = "PACKAGE VERSION";
+$license->to = "1.0.0-alpha1";
+$mappings->replacements[] = $license;
+
+$firstauthor = new stdClass();
+$firstauthor->from = "FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.";
+$firstauthor->to = "William Desportes <williamdes@wdes.fr>";
+$mappings->replacements[] = $firstauthor;
+
 $description = new stdClass();
 $description->from = "SOME DESCRIPTIVE TITLE";
 $description->to = "Wdes Account manager translation";
 $mappings->replacements[] = $description;
+
 $year = new stdClass();
 $year->from = "YEAR";
 $year->to = date("Y");//2018 -
 $mappings->replacements[] = $year;
+
 $templates = new stdClass();
 $templates->from = $tmpDir;
 $templates->to = $templatesPath;
@@ -60,8 +78,6 @@ exec(
 'xgettext --force-po --from-code=UTF-8'.
 ' --default-domain=account-manager'.
 ' --copyright-holder="William Desportes"'.
-' --package-name="wdes/account-manager"'.
-' --package-version="1.0.0-alpha1"'.
 ' --msgid-bugs-address=williamdes@wdes.fr'.
 ' --from-code=utf-8'.
 ' --keyword=__ --keyword=_gettext --keyword=_pgettext:1c,2 --keyword=_ngettext:1,2'.
