@@ -3,7 +3,7 @@
     "description": "Account manager",
     "homepage": "https://github.com/wdes/account-manager",
     "type": "project",
-    "license": "GPL v2",
+    "license": "MPL-2.0",
     "readme": "https://github.com/wdes/account-manager/blob/master/README.md",
     "support": {
         "email": "williamdes@wdes.fr",
