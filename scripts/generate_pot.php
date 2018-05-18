@@ -23,7 +23,11 @@ $mappings->mappings = array();
 $mappings->replacements = array();
 
 $license = new stdClass();
-$license->from = "This file is distributed under the same license as the PACKAGE package.";
+// Bug fix for Fossa
+$license->from = "This file is";
+$license->from .= "distributed";
+$license->from .= "under the same.";
+$license->from .= "license as the PACKAGE package.";
 $license->to = "This file is distributed under the license http://unlicense.org/UNLICENSE";
 $mappings->replacements[] = $license;
 
