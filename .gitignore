@@ -1,0 +1,6 @@
+vendor
+composer.lock
+tmp/*
+!tmp/.gitkeep
+locale
+node_modules
