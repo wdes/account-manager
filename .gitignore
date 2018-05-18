@@ -4,3 +4,4 @@ tmp/*
 !tmp/.gitkeep
 locale
 node_modules
+*.po~
