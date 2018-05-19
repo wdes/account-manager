@@ -1,0 +1,25 @@
+{% include 'head.twig' %}
+<div class="col-md-12 d-flex justify-content-center">
+    <div class="col-md-4">
+        <form class="form-signin" action="POST">
+        <div class="text-center mb-4">
+            <i class="mdi mdi-account mdi-48"></i>
+            <h1 class="h3 mb-3 font-weight-normal">{% trans "Login" %}</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="email" id="inputEmail" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
+            <label for="inputEmail">{% trans "Email address" %}</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="inputPassword" class="form-control" placeholder="{% trans "Password" %}" required>
+            <label for="inputPassword">{% trans "Password" %}</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign in" %}</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
+        </form>
+    </div>
+</div>
+{% include 'foot.twig' %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wdes/account-manager 1.0.0-alpha1\n"
 "Report-Msgid-Bugs-To: williamdes@wdes.fr\n"
-"POT-Creation-Date: 2018-05-19 00:17+0200\n"
+"POT-Creation-Date: 2018-05-19 17:23+0200\n"
 "PO-Revision-Date: 2018-05-17 12:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,3 +23,21 @@ msgstr ""
 #: src/templates/foot.twig:5
 msgid "Back to top"
 msgstr "Retour en haut"
+
+#: src/templates/login.twig:7
+msgid "Login"
+msgstr "Connexion"
+
+#: src/templates/login.twig:11
+#: src/templates/login.twig:12
+msgid "Email address"
+msgstr "Adresse email"
+
+#: src/templates/login.twig:16
+#: src/templates/login.twig:17
+msgid "Password"
+msgstr "Mot de passe"
+
+#: src/templates/login.twig:20
+msgid "Sign in"
+msgstr "Se connecter"

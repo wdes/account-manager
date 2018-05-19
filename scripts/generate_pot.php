@@ -8,15 +8,8 @@ require_once __DIR__.'/../vendor/autoload.php';
 $templatesPath = "src/";
 $tplDir = realpath(__DIR__.'/../'.$templatesPath.'templates');
 $tmpDir = realpath(__DIR__.'/../tmp/twig_cache/').'/';
-$loader = new Twig_Loader_Filesystem($tplDir);
-$cacheFS = new \Twig_Cache_Filesystem($tmpDir);
-PhpMyAdmin\MoTranslator\Loader::loadFunctions();
-// force auto-reload to always have the latest version of the template
-$twig = new Twig_Environment($loader, array(
-    'cache' => $cacheFS,//$tmpDir,
-    'auto_reload' => true
-));
-$twig->addExtension(new AccountManager\Twig\I18nExtension());
+\AccountManager\Utils\FS::rmdir_recursive($tmpDir);
+\AccountManager\Twig\Load::load($tmpDir);
 
 $mappings = new stdClass();
 $mappings->mappings = array();
@@ -25,9 +18,9 @@ $mappings->replacements = array();
 $license = new stdClass();
 // Bug fix for Fossa
 $license->from = "This file is";
-$license->from .= "distributed";
-$license->from .= "under the same.";
-$license->from .= "license as the PACKAGE package.";
+$license->from .= " distributed";
+$license->from .= " under the same";
+$license->from .= " license as the PACKAGE package.";
 $license->to = "This file is distributed under the license http://unlicense.org/UNLICENSE";
 $mappings->replacements[] = $license;
 
@@ -64,7 +57,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tplDir), 
     if ($tmpl->isFile()) {
         $short_name = str_replace($tplDir.'/', '', $tmpl);
         $template = $twig->loadTemplate($short_name);
-        $key = $cacheFS->generateKey($short_name, $twig->getTemplateClass($short_name) );
+        $key = \AccountManager\Twig\Load::$cacheFS->generateKey($short_name, $twig->getTemplateClass($short_name) );
         //echo $key."\r\n";
         $cache_file = str_replace(
             $tmpDir, '',
@@ -88,5 +81,5 @@ exec(
 ' -p ./locale'.
 ' --from-code=UTF-8'.
 ' --add-comments=l10n'.
-' --add-location -L PHP $(find "$(pwd -P)" \( -name "*.php" \) -not -path "$(pwd -P)/vendor/*" | sort) -o '.__DIR__."/../po/account-manager.pot");
+' --add-location -L PHP $(find "$(pwd -P)" \( -name "*.php" \) -not -path "$(pwd -P)/tmp/twig/*" -not -path "$(pwd -P)/vendor/*" | sort) -o '.__DIR__."/../po/account-manager.pot");
 
