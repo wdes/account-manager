@@ -4,15 +4,17 @@
  * @license http://unlicense.org/UNLICENSE The UNLICENSE
  * @author William Desportes <williamdes@wdes.fr>
  */
-$po_template = realpath(__DIR__."/../po/account-manager.pot");
+require_once __DIR__.'/../src/Constants.php';
+
+$po_template = realpath(PO_DIR."account-manager.pot");
 $template = file_get_contents($po_template);
 
 $mappings = new stdClass();
 $mappings->mappings = array();
 $mappings->replacements = array();
 
-if (is_file(__DIR__."/../tmp/mapping.json"))
-    $mappings = json_decode(file_get_contents(__DIR__."/../tmp/mapping.json"));
+if (is_file(TMP_DIR."mapping.json"))
+    $mappings = json_decode(file_get_contents(TMP_DIR."mapping.json"));
 
 
 foreach($mappings->replacements as $replacement ) {
@@ -51,11 +53,9 @@ function poupdate($po_file) {
 }
 
 
-
-$podir = realpath(__DIR__."/../po/")."/";
-echo "PoDir: ${podir}\r\n";
-foreach (glob("${podir}*.po") as $file) {
-    exec("msgmerge --quiet --previous -U $file ${podir}account-manager.pot");
+echo "PoDir: ".PO_DIR."\r\n";
+foreach (glob(PO_DIR."*.po") as $file) {
+    exec("msgmerge --quiet --previous -U $file ".PO_DIR."account-manager.pot");
     echo "File: $file\r\n";
     poupdate($file);
 }

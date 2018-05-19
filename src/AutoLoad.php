@@ -1,12 +1,14 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/Constants.php';
+set_include_path(SRC_DIR);
 \PhpMyAdmin\MoTranslator\Loader::loadFunctions();
 // Configure
 _setlocale(LC_MESSAGES, 'fr');
 _textdomain('account-manager');
-_bindtextdomain('account-manager', __DIR__ . '/../locale/');
+_bindtextdomain('account-manager', LOCALE_DIR);
 _bind_textdomain_codeset('account-manager', 'UTF-8');
 
-\AccountManager\Twig\Load::load(__DIR__.'/../tmp/twig');
+\AccountManager\Twig\Load::load(TWIG_TMP);
 
 $auth = new \AccountManager\Authentification\Authentification();

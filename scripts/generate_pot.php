@@ -5,9 +5,11 @@
  * @author William Desportes <williamdes@wdes.fr>
  */
 require_once __DIR__.'/../vendor/autoload.php';
-$templatesPath = "src/";
-$tplDir = realpath(__DIR__.'/../'.$templatesPath.'templates');
-$tmpDir = realpath(__DIR__.'/../tmp/twig_cache/').'/';
+require_once __DIR__.'/../src/Constants.php';
+
+$tmpDir = TMP_DIR.'twig_cache/';
+$shortTempDir = str_replace(PROJECT_ROOT, "", TEMPLATE_DIR);
+
 \AccountManager\Utils\FS::rmdir_recursive($tmpDir);
 \AccountManager\Twig\Load::load($tmpDir);
 
@@ -46,16 +48,16 @@ $mappings->replacements[] = $year;
 
 $templates = new stdClass();
 $templates->from = $tmpDir;
-$templates->to = $templatesPath;
+$templates->to = "";
 $mappings->replacements[] = $templates;
 
 
 // iterate over all your templates
-foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tplDir), RecursiveIteratorIterator::LEAVES_ONLY) as $tmpl)
+foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(TEMPLATE_DIR), RecursiveIteratorIterator::LEAVES_ONLY) as $tmpl)
 {
     // force compilation
     if ($tmpl->isFile()) {
-        $short_name = str_replace($tplDir.'/', '', $tmpl);
+        $short_name = str_replace(TEMPLATE_DIR, '', $tmpl);
         $template = $twig->loadTemplate($short_name);
         $key = \AccountManager\Twig\Load::$cacheFS->generateKey($short_name, $twig->getTemplateClass($short_name) );
         //echo $key."\r\n";
@@ -63,14 +65,15 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tplDir), 
             $tmpDir, '',
             $key
         );
+
         $mappings->mappings[$cache_file] = new stdClass();
         //$mappings->mappings[$cache_file]->key = $key;
-        $mappings->mappings[$cache_file]->fileName = "templates/".$short_name;
+        $mappings->mappings[$cache_file]->fileName = $shortTempDir.$short_name;
         $mappings->mappings[$cache_file]->debugInfo = $template->getDebugInfo();
     }
-    $tmpl_file = 'templates/' . $tmpl;
+    $tmpl_file = TEMPLATE_DIR . $tmpl;
 }
-file_put_contents(__DIR__."/../tmp/mapping.json",json_encode($mappings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+file_put_contents(TMP_DIR."mapping.json",json_encode($mappings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 exec(
 'xgettext --force-po --from-code=UTF-8'.
 ' --default-domain=account-manager'.
@@ -81,5 +84,5 @@ exec(
 ' -p ./locale'.
 ' --from-code=UTF-8'.
 ' --add-comments=l10n'.
-' --add-location -L PHP $(find "$(pwd -P)" \( -name "*.php" \) -not -path "$(pwd -P)/tmp/twig/*" -not -path "$(pwd -P)/vendor/*" | sort) -o '.__DIR__."/../po/account-manager.pot");
+' --add-location -L PHP $(find "'.TMP_DIR.'" \( -name "*.php" \) -not -path "'.TMP_DIR.'twig/*" -not -path "'.PROJECT_ROOT.'vendor/*" | sort) -o '.PO_DIR."account-manager.pot");
 

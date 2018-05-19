@@ -9,7 +9,7 @@ class Load {
     public static function load(string $tmpDir): void {
         global $loader, $twig;
         Load::$cacheFS = new \Twig_Cache_Filesystem($tmpDir);
-        $loader = new \Twig_Loader_Filesystem(__DIR__.'/../templates');
+        $loader = new \Twig_Loader_Filesystem(TEMPLATE_DIR);
         $twig = new \Twig_Environment($loader, array(
             'cache' => Load::$cacheFS,
             'debug' => true
@@ -21,5 +21,8 @@ class Load {
         }));
 
         $twig->addExtension(new \AccountManager\Twig\I18nExtension());
+        $twig->addGlobal('_session', @$_SESSION);
+        $twig->addGlobal('_post', $_POST);
+        $twig->addGlobal('_get', $_GET);
     }
 }
