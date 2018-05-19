@@ -1,0 +1,33 @@
+{
+  "name": "account-manager",
+  "version": "1.0.0-alpha1",
+  "description": "Account manager",
+  "contributors": [],
+  "private": true,
+  "readme": "https://github.com/wdes/account-manager/blob/master/README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "web:dev": "webpack --mode development --watch",
+    "web:prod": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdes/account-manager.git"
+  },
+  "author": {
+    "name": "William Desportes",
+    "email": "williamdes@wdes.fr",
+    "url": "https://william.wdes.fr"
+  },
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/wdes/account-manager/issues"
+  },
+  "homepage": "https://github.com/wdes/account-manager#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}

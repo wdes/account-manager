@@ -12,6 +12,11 @@ $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__.'/tmp/twig',
     'debug' => true
 ));
+$twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
+    // implement whatever logic you need to determine the asset path
+
+    return sprintf('public/assets/%s', ltrim($asset, '/'));
+}));
 
 $twig->addExtension(new AccountManager\Twig\I18nExtension());
 
