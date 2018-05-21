@@ -11,11 +11,10 @@ class Authentification {
         $this->check();
     }
     private function check() {
-        if (isset($_SESSION["loggedIn"])) {
-            $loggedIn = true;
-        }
+        $this->loggedIn = (isset($_SESSION["loggedIn"]));
     }
     public function isLoggedIn() {
+        $this->check();
         return $this->loggedIn;
     }
 }

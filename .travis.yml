@@ -42,11 +42,16 @@ matrix:
       before_install:
         - brew update
         - brew install php72 mariadb
-        - brew install php72-xdebug
         - sed -i -e 's/^memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/7.2/php.ini
         - curl https://getcomposer.org/installer | php
         - ln -s "`pwd`/composer.phar" /usr/local/bin/composer
 
+allow_failures:
+  - php: "7.0"
+    env: CI_TYPE=phpunit
+  - os: osx
+    php: "7.2"
+    env: CI_TYPE=phpunit
 cache:
   apt: true
   directories:

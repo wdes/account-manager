@@ -4,6 +4,7 @@
         colors="true"
         backupGlobals="false"
         bootstrap="../vendor/autoload.php"
+        stderr="true"
 >
 
     <exclude-pattern>*/node_modules/*</exclude-pattern>

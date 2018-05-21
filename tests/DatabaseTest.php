@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace AccountManager;
+
 use PHPUnit\Framework\TestCase;
 use \AccountManager\Database;
 use \AccountManager\Config;
@@ -51,4 +53,3 @@ class DatabaseTest extends TestCase
 
     }
 }
-?>
