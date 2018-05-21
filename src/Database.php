@@ -18,7 +18,7 @@ class Database {
     private $bdd;
     function __construct(Config $config){
         $c = $config->getDatabase();
-        $this->bdd = new PDO("mysql:dbname=;host=$c->host;charset=utf8", $c->user, $c->password);
+        $this->bdd = new PDO("mysql:dbname=$c->name;host=$c->host;charset=utf8", $c->user, $c->password);
         $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     /**

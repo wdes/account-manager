@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace AccountManager;
 use \stdClass;
 use \Exception;
-use \Symfony\Component\Dotenv\Dotenv;
+use \Dotenv\Dotenv;
 
 class Config {
     protected $dotenv;
-    public function __construct(string $envFile) {
-        $this->dotenv = new Dotenv();
-        if (is_file($envFile)) {
-            $this->dotenv->load($envFile);
+    public function __construct(string $envDir) {
+        if (is_dir($envDir)) {
+            $this->dotenv = new Dotenv($envDir);
+            $this->dotenv->load();
         } else {
-            throw new Exception("The file does not exist : $envFile");
+            throw new Exception("The directory does not exist : $envDir");
         }
     }
     /**
@@ -26,6 +26,7 @@ class Config {
         $dbConfig->user = getenv('DB_USER');
         $dbConfig->password = getenv('DB_PASS');
         $dbConfig->host = getenv('DB_HOST');
+        $dbConfig->name = getenv('DB_NAME');
         return $dbConfig;
     }
 }

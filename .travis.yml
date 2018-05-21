@@ -42,20 +42,25 @@ matrix:
       before_install:
         - brew update
         - brew install php72 mariadb
+        - brew install php72-xdebug
         - sed -i -e 's/^memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/7.2/php.ini
         - curl https://getcomposer.org/installer | php
         - ln -s "`pwd`/composer.phar" /usr/local/bin/composer
-        - mysql.server start
 
 cache:
+  apt: true
   directories:
     - $HOME/.composer/cache/
-
+    - $HOME/.cache/bower
+    - $HOME/.npm
+    - /var/cache/apt
 
 addons:
   apt:
     update: true
     packages:
     - git
-    - mysql-server-5.6
+    - mysql-server
     - nginx
+    sources:
+      - mysql-5.7-trusty

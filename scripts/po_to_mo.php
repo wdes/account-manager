@@ -1,13 +1,14 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../src/Constants.php';
 
-$localedir = realpath(__DIR__."/../locale")."/";
-echo "LocaleDir: $localedir\r\n";
+echo "LocaleDir: ".LOCALE_DIR."\r\n";
 
-
-\AccountManager\Utils\FS::rmdir_recursive($localedir);
-mkdir($localedir);
+if (is_dir(LOCALE_DIR)) {
+\AccountManager\Utils\FS::rmdir_recursive(LOCALE_DIR);
+}
+mkdir(LOCALE_DIR);
 $podir = realpath(__DIR__."/../po/")."/";
 foreach (glob($podir."*.po") as $filename) {
     $lang = str_replace(".po", "", basename($filename));

@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * @license http://unlicense.org/UNLICENSE The UNLICENSE
