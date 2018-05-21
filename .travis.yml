@@ -1,0 +1,54 @@
+dist: trusty
+
+language: php
+
+services:
+  - mysql
+
+php:
+  - "5.7"
+  - "7.1"
+  - "7.2"
+
+sudo: required
+
+env:
+  matrix:
+    - CI_TYPE=phpunit
+
+before_script:
+  - ./scripts/install.sh
+
+script:
+  - ./scripts/po_to_mo.php
+  - ./srcipts/ci/ci-$CI_TYPE
+
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+matrix:
+  fast_finish: true
+  include:
+    - os: osx
+      language: generic
+      env: CI_TYPE=test
+      before_install:
+        - brew update
+        - brew install php72 mariadb
+        - sed -i -e 's/^memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/7.2/php.ini
+        - curl https://getcomposer.org/installer | php
+        - ln -s "`pwd`/composer.phar" /usr/local/bin/composer
+        - mysql.server start
+
+cache:
+  directories:
+    - $HOME/.composer/cache/
+
+
+addons:
+  apt:
+    packages:
+    - git
+    - mysql-server-5.7
+    - nginx

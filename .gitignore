@@ -6,3 +6,4 @@ locale
 node_modules
 *.po~
 public/assets/js/bundle.js
+.env

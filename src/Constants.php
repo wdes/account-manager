@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 define("LOCALE_DIR", __DIR__ . '/../locale/');
 define("TEMPLATE_DIR", realpath(__DIR__.'/templates').'/');
 define("SRC_DIR", realpath(__DIR__.'/').'/');

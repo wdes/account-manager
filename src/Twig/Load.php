@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace AccountManager\Twig;
 /**
@@ -6,6 +7,7 @@ namespace AccountManager\Twig;
  */
 class Load {
     public static $cacheFS;
+    public static $twig;
     public static function load(string $tmpDir): void {
         global $loader, $twig;
         Load::$cacheFS = new \Twig_Cache_Filesystem($tmpDir);
@@ -19,10 +21,18 @@ class Load {
 
             return sprintf('public/assets/%s', ltrim($asset, '/'));
         }));
+        $twig->addFunction(new \Twig_SimpleFunction('html', function ($code) {
+            return new \Twig_Markup($code, "utf-8");
+        }));
 
         $twig->addExtension(new \AccountManager\Twig\I18nExtension());
         $twig->addGlobal('_session', @$_SESSION);
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
+        $twig->addGlobal('locale', \Locale::getDefault());
+        Load::$twig = $twig;
+    }
+    public static function getTwig(): \Twig_Environment {
+        return Load::$twig;
     }
 }

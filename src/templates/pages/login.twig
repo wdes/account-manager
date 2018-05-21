@@ -1,0 +1,25 @@
+{% include 'head.twig' %}
+<div class="col-md-12 d-flex justify-content-center">
+    <div class="col-md-4">
+        <form class="form-signin" method="POST">
+        <div class="text-center mb-4">
+            <i class="mdi mdi-account mdi-48"></i>
+            <h1 class="h3 mb-3 font-weight-normal">{% trans "Login" %}</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="email" id="email" name="email" value="{{ _post.email }}" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
+            <label for="email">{% trans "Email address" %}</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="{% trans "Password" %}" required>
+            <label for="password">{% trans "Password" %}</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign in" %}</button>
+        <p class="mt-5 mb-3 text-muted text-right"><a href="register.php">{% trans "Register" %}</a></p>
+        </form>
+    </div>
+</div>
+{% include 'foot.twig' %}
