@@ -17,7 +17,7 @@ env:
     - CI_TYPE=phpunit
 
 before_script:
-  - ./scripts/install.sh
+  - ./scripts/ci/install.sh
 
 script:
   - ./scripts/po_to_mo.php
@@ -32,7 +32,7 @@ matrix:
   include:
     - os: osx
       language: generic
-      env: CI_TYPE=test
+      env: CI_TYPE=phpunit
       before_install:
         - brew update
         - brew install php72 mariadb
