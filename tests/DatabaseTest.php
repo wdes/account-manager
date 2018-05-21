@@ -12,7 +12,7 @@ class DatabaseTest extends TestCase
 {
     public function testConnectAndInstance()
     {
-        $config = new Config(__DIR__."/.env");// Test suite file: tests/.env
+        $config = new Config(__DIR__);// Test suite file: tests/.env
         $db = new Database($config);
         $this->assertInstanceOf(Database::class, $db);
         return $db;
