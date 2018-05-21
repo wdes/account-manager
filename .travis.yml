@@ -50,5 +50,5 @@ addons:
   apt:
     packages:
     - git
-    - mysql-server-5.7
+    - mysql-server-5.6
     - nginx
