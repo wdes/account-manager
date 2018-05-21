@@ -21,7 +21,7 @@ before_script:
 
 script:
   - ./scripts/po_to_mo.php
-  - ./srcipts/ci/ci-$CI_TYPE
+  - ./scripts/ci/ci-$CI_TYPE
 
 
 after_success:
@@ -32,6 +32,7 @@ matrix:
   include:
     - os: osx
       language: generic
+      php: "7.2"
       env: CI_TYPE=phpunit
       before_install:
         - brew update
