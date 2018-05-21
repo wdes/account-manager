@@ -10,3 +10,4 @@ mysql -uroot < $ME/../../sql/events.sql
 mysql -uroot < $ME/../../sql/triggers.sql
 mysql -uroot -e "SET PASSWORD = PASSWORD('$BDD_PWD')"
 echo -e "DB_HOST=localhost\r\nDB_USER=root\r\nDB_PASS=$BDD_PWD\r\n" > $ME/../../.env
+cp $ME/../../.env $ME/../../tests/.env
