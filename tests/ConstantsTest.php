@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace AccountManager;
 
-require_once __DIR__.'/../src/Constants.php';
 
 use PHPUnit\Framework\TestCase;
 
 
 class ConstantsTest extends TestCase
 {
-    public function testConnectAndInstance()
+    public function testConstants()
     {
+        require_once __DIR__.'/../src/Constants.php';
         $this->assertNotEmpty(LOCALE_DIR);
         $this->assertStringEndsWith('/', LOCALE_DIR);
 

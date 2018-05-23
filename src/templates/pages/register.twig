@@ -1,7 +1,8 @@
 {% include 'head.twig' %}
 <div class="col-md-12 d-flex justify-content-center">
     <div class="col-md-4">
-        <form class="form-signin" method="POST">
+    {% if registered %}
+    <form class="form-signin" method="POST">
         <div class="text-center mb-4">
             <i class="mdi mdi-account mdi-48"></i>
             <h1 class="h3 mb-3 font-weight-normal">{% trans "Register" %}</h1>
@@ -10,6 +11,11 @@
         <div class="form-label-group">
             <input type="email" id="email" name="email" value="{{ _post.email }}" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
             <label for="email">{% trans "Email address" %}</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="username" id="username" name="username" value="{{ _post.username }}" class="form-control" placeholder="{% trans "Username" %}" required>
+            <label for="username">{% trans "Username" %}</label>
         </div>
 
         <div class="form-label-group">
@@ -22,9 +28,17 @@
             <label for="password">{% trans "Password confirmation" %}</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign up" %}</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="register" value="register">{% trans "Sign up" %}</button>
         <p class="mt-5 mb-3 text-muted text-right"><a href="login.php">{% trans "Login" %}</a></p>
         </form>
+    {% else %}
+        <div class="text-center mb-4">
+            <i class="mdi mdi-account mdi-48"></i>
+            <h1 class="h3 mb-3 font-weight-normal">{% trans "The account has been successfully created !" %}</h1>
+        </div>
+        {{ html(messages) }}
+    {% endif %}
+
     </div>
 </div>
 {% include 'foot.twig' %}

@@ -1,6 +1,8 @@
 dist: trusty
 
 language: php
+rvm:
+  - 2.2.0
 
 services:
   - mysql
@@ -17,9 +19,13 @@ env:
     - CI_TYPE=phpunit
 
 before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
   - ./scripts/ci/install.sh
 
 script:
+  - bundle exec rspec
   - ./scripts/po_to_mo.php
   - ./scripts/ci/ci-$CI_TYPE.sh
 
@@ -31,6 +37,9 @@ install:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 matrix:
   fast_finish: true
@@ -46,12 +55,13 @@ matrix:
         - curl https://getcomposer.org/installer | php
         - ln -s "`pwd`/composer.phar" /usr/local/bin/composer
 
-allow_failures:
-  - php: "7.0"
-    env: CI_TYPE=phpunit
-  - os: osx
-    php: "7.2"
-    env: CI_TYPE=phpunit
+  allow_failures:
+    - php: "7.0"
+      env: CI_TYPE=phpunit
+    - os: osx
+      php: "7.2"
+      env: CI_TYPE=phpunit
+
 cache:
   apt: true
   directories:
