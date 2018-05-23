@@ -1,6 +1,12 @@
-## other configuration excluded from example...
 exclude_patterns:
 - "public/"
 - "po/"
 - "**/vendor/"
 - "**/node_modules/"
+plugins:
+  git-legal:
+    enabled: true
+  markdownlint:
+    enabled: true
+  phpcodesniffer:
+    enabled: true

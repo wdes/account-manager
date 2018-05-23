@@ -103,12 +103,20 @@ class DatabaseTest extends TestCase
      */
     public function testSelectTableNoCriteria(Database $db): void
     {
+        $this->verifyCanFindOne($db, "blablaéà");
+    }
+
+    /**
+     * @depends testInsertTable
+     */
+    public function verifyCanFindOne(Database $db, string $akeyvalue): void
+    {
         $obj = $db->Select("*", "test1");
         $this->assertInstanceOf(PDOStatement::class, $obj);
         $this->assertEquals(1, $obj->rowCount());
         $row = $obj->fetch(PDO::FETCH_OBJ);
         $this->assertEquals(0, $row->id);
-        $this->assertEquals("blablaéà", $row->akey);
+        $this->assertEquals($akeyvalue, $row->akey);
     }
 
     /**
@@ -135,12 +143,7 @@ class DatabaseTest extends TestCase
      */
     public function testSelectTableAfterDuplicateNoCriteria(Database $db): void
     {
-        $obj = $db->Select("*", "test1");
-        $this->assertInstanceOf(PDOStatement::class, $obj);
-        $this->assertEquals(1, $obj->rowCount());
-        $row = $obj->fetch(PDO::FETCH_OBJ);
-        $this->assertEquals(0, $row->id);
-        $this->assertEquals("updated", $row->akey);
+        $this->verifyCanFindOne($db, "updated");
     }
 
     /**
