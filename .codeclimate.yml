@@ -3,6 +3,7 @@ exclude_patterns:
 - "po/"
 - "**/vendor/"
 - "**/node_modules/"
+
 plugins:
   git-legal:
     enabled: true
@@ -10,3 +11,16 @@ plugins:
     enabled: true
   phpcodesniffer:
     enabled: true
+
+engines:
+  phpcodesniffer:
+    enabled: true
+    config:
+      file_extensions: "php"
+      standard: "tests/phpcs.xml"
+      ignore_warnings: true
+      encoding: utf-8
+
+ratings:
+  paths:
+  - "**.php"
