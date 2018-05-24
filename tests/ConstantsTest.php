@@ -1,15 +1,13 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace AccountManager;
-
 
 use PHPUnit\Framework\TestCase;
 
-
 class ConstantsTest extends TestCase
 {
-    public function testConstants()
+
+    public function testConstants(): void
     {
         require_once __DIR__.'/../src/Constants.php';
         $this->assertNotEmpty(LOCALE_DIR);
@@ -32,8 +30,6 @@ class ConstantsTest extends TestCase
 
         $this->assertNotEmpty(PO_DIR);
         $this->assertStringEndsWith('/', PO_DIR);
-
     }
-
 
 }

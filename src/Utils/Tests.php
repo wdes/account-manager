@@ -1,10 +1,10 @@
 <?php
-
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace AccountManager\Utils;
 
-class Tests {
+class Tests
+{
+
     /**
      * Call protected/private method of a class.
      *
@@ -14,12 +14,13 @@ class Tests {
      *
      * @return mixed Method return.
      */
-    public static function invokeMethod(&$object, $methodName, array $parameters = array())
+    public static function invokeMethod(object &$object, string $methodName, array $parameters = array())
     {
         $reflection = new \ReflectionClass(get_class($object));
-        $method = $reflection->getMethod($methodName);
+        $method     = $reflection->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
     }
+
 }

@@ -13,11 +13,12 @@ $mappings = new stdClass();
 $mappings->mappings = array();
 $mappings->replacements = array();
 
-if (is_file(TMP_DIR."mapping.json"))
+if (is_file(TMP_DIR."mapping.json")) {
     $mappings = json_decode(file_get_contents(TMP_DIR."mapping.json"));
+}
 
 
-foreach($mappings->replacements as $replacement ) {
+foreach ($mappings->replacements as $replacement) {
     $template = str_replace($replacement->from, $replacement->to, $template);
 }
 
@@ -26,7 +27,8 @@ $license_block = str_replace(", fuzzy", "", $parts[0]);
 
 file_put_contents($po_template, $template);
 
-function poupdate($po_file) {
+function poupdate($po_file)
+{
     global $mappings, $license_block;
     $pot_contents = file_get_contents($po_file);
 

@@ -7,9 +7,38 @@
     <!-- https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
     <description>Wdes PHP_CodeSniffer custom coding standard</description>
 
-    <!-- The PSR-2 coding standard https://www.php-fig.org/psr/psr-2/ -->
-    <rule ref="PSR2" />
-	<file>.</file>
+    <file>../</file>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/sql/*</exclude-pattern>
+    <exclude-pattern>*/po/*</exclude-pattern>
+    <exclude-pattern>*/locale/*</exclude-pattern>
+    <exclude-pattern>*/sql-backup/*</exclude-pattern>
+    <exclude-pattern>*/tmp/*</exclude-pattern>
+    <exclude-pattern>*/public/*</exclude-pattern>
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine"/>
+    <rule ref="SlevomatCodingStandard.PHP.TypeCast"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="newlinesCountBetweenOpenTagAndDeclare" value="1"/>
+            <property name="newlinesCountAfterDeclare" value="1"/>
+            <property name="spacesCountAroundEqualsSign" value="1"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
+		<properties>
+			<property name="forbiddenAnnotations" type="array" value="
+				@copyright,
+				@package,
+				@throws
+			"/>
+		</properties>
+	</rule>
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
     <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
@@ -39,7 +68,10 @@
             <property name="error" value="false"/>
         </properties>
     </rule>
-    <rule ref="Generic.PHP.UpperCaseConstant"/>
+    <rule ref="PEAR.NamingConventions.ValidFunctionName">
+        <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+        <exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionUnderscore"/>
+    </rule>
     <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
     <rule ref="Generic.WhiteSpace.ScopeIndent"/>
     <rule ref="MySource.PHP.EvalObjectFactory"/>
@@ -89,7 +121,9 @@
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
     <rule ref="Squiz.WhiteSpace.FunctionSpacing">
         <properties>
-            <property name="spacing" value="1"/>
+            <property name="spacing" value="1" />
+            <property name="spacingBeforeFirst" value="1" />
+            <property name="spacingAfterLast" value="1" />
         </properties>
     </rule>
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>

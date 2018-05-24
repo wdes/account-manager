@@ -1,6 +1,5 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace AccountManager\Html;
 
 require_once __DIR__.'/../../src/Constants.php';
@@ -12,7 +11,13 @@ use \AccountManager\Twig\Load;
 
 class MessagesTest extends TestCase
 {
-    public function testInstance()
+
+    /**
+     * testInstance
+     *
+     * @return Messages
+     */
+    public function testInstance(): Messages
     {
         Load::load(TWIG_TMP);
         $messages = new Messages();
@@ -21,9 +26,12 @@ class MessagesTest extends TestCase
     }
 
     /**
+     * testEmpty
      * @depends testInstance
+     * @param Messages $messages
+     * @return void
      */
-    public function testEmpty(Messages $messages)
+    public function testEmpty(Messages $messages): void
     {
         $html = $messages->render();
         $this->assertEquals("", $html);
@@ -31,9 +39,12 @@ class MessagesTest extends TestCase
     }
 
     /**
+     * testNotEmpty
      * @depends testInstance
+     * @param Messages $messages
+     * @return void
      */
-    public function testNotEmpty(Messages $messages)
+    public function testNotEmpty(Messages $messages): void
     {
         $messages->add(new Message("test message @!"));
         $html = $messages->render();
@@ -41,11 +52,16 @@ class MessagesTest extends TestCase
             '    <div class="alert alert-primary" role="alert">'.PHP_EOL.
             '    test message @!'.PHP_EOL.
             '    </div>'.PHP_EOL,
-        $html);
+            $html
+        );
         $this->assertNotEmpty($html);
     }
 
-    public function testMessage()
+    /**
+     * testMessage
+     * @return void
+     */
+    public function testMessage(): void
     {
         $message = new Message("test message @!");
         $this->assertEquals(Message::primary, $message->severity);
@@ -55,4 +71,3 @@ class MessagesTest extends TestCase
     }
 
 }
-?>

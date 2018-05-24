@@ -1,6 +1,5 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace AccountManager\Html;
 
 require_once __DIR__.'/../../src/Constants.php';
@@ -10,7 +9,13 @@ use \AccountManager\Authentification\Authentification;
 
 class AuthentificationTest extends TestCase
 {
-    public function testInstance()
+
+    /**
+     * testInstance
+     *
+     * @return Authentification
+     */
+    public function testInstance(): Authentification
     {
         $auth = new Authentification();
         $this->assertInstanceOf(Authentification::class, $auth);
@@ -19,18 +24,23 @@ class AuthentificationTest extends TestCase
 
     /**
      * @depends testInstance
+     * @param Authentification $auth Authentification auth object
+     * @return void
      */
-    public function testIsNotLoggedIn(Authentification $auth)
+    public function testIsNotLoggedIn(Authentification $auth): void
     {
         $this->assertFalse($auth->isLoggedIn());
     }
 
     /**
      * @depends testInstance
+     * @param Authentification $auth Authentification auth object
+     * @return void
      */
-    public function testIsLoggedIn(Authentification $auth)
+    public function testIsLoggedIn(Authentification $auth): void
     {
         $_SESSION["loggedIn"] = true;
         $this->assertTrue($auth->isLoggedIn());
     }
+
 }

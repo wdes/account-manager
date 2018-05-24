@@ -1,6 +1,5 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/Constants.php';
 set_include_path(SRC_DIR);
@@ -13,6 +12,6 @@ _bind_textdomain_codeset('account-manager', 'UTF-8');
 
 \AccountManager\Twig\Load::load(TWIG_TMP);
 
-$auth = new \AccountManager\Authentification\Authentification();
+$auth   = new \AccountManager\Authentification\Authentification();
 $config = new \AccountManager\Config(PROJECT_ROOT);
-$db = new \AccountManager\Database($config);
+$db     = new \AccountManager\Database($config);
