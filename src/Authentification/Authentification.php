@@ -9,17 +9,30 @@ class Authentification
 {
     protected $loggedIn = false;
 
+    /**
+     * Create an Authentification
+     */
     public function __construct()
     {
         session_start();
         $this->check();
     }
 
+    /**
+     * Check and set loggedIn state
+     *
+     * @return void
+     */
     private function check(): void
     {
         $this->loggedIn = (isset($_SESSION["loggedIn"]));
     }
 
+    /**
+     * Is logged in ?
+     *
+     * @return bool loggedIn/Out
+     */
     public function isLoggedIn()
     {
         $this->check();

@@ -7,6 +7,11 @@ use PHPUnit\Framework\TestCase;
 class ConstantsTest extends TestCase
 {
 
+    /**
+     * testConstants
+     *
+     * @return void
+     */
     public function testConstants(): void
     {
         require_once __DIR__.'/../src/Constants.php';
@@ -26,7 +31,6 @@ class ConstantsTest extends TestCase
         $this->assertStringEndsWith('/', PROJECT_ROOT);
 
         $this->assertNotEmpty(TWIG_TMP);
-        //$this->assertStringEndsWith('/', TWIG_TMP);// Twig handles no ending /
 
         $this->assertNotEmpty(PO_DIR);
         $this->assertStringEndsWith('/', PO_DIR);

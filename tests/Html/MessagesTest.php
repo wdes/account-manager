@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace AccountManager\Html;
 
-require_once __DIR__.'/../../src/Constants.php';
-
 use PHPUnit\Framework\TestCase;
 use \AccountManager\Html\Messages;
 use \AccountManager\Html\Message;
@@ -19,7 +17,8 @@ class MessagesTest extends TestCase
      */
     public function testInstance(): Messages
     {
-        Load::load(TWIG_TMP);
+        require_once __DIR__.'/../../src/Constants.php';
+        Load::init(TWIG_TMP);
         $messages = new Messages();
         $this->assertInstanceOf(Messages::class, $messages);
         return $messages;
@@ -28,7 +27,7 @@ class MessagesTest extends TestCase
     /**
      * testEmpty
      * @depends testInstance
-     * @param Messages $messages
+     * @param Messages $messages Messages instance
      * @return void
      */
     public function testEmpty(Messages $messages): void
@@ -41,7 +40,7 @@ class MessagesTest extends TestCase
     /**
      * testNotEmpty
      * @depends testInstance
-     * @param Messages $messages
+     * @param Messages $messages Messages instance
      * @return void
      */
     public function testNotEmpty(Messages $messages): void
@@ -64,7 +63,7 @@ class MessagesTest extends TestCase
     public function testMessage(): void
     {
         $message = new Message("test message @!");
-        $this->assertEquals(Message::primary, $message->severity);
+        $this->assertEquals(Message::PRIMARY, $message->severity);
         $this->assertNotEmpty($message->severity);
         $this->assertEquals("test message @!", $message->message);
         $this->assertNotEmpty($message->message);

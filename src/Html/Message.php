@@ -4,24 +4,24 @@ namespace AccountManager\Html;
 
 class Message
 {
-    public const primary   = "primary";
-    public const secondary = "secondary";
-    public const success   = "success";
-    public const danger    = "danger";
-    public const warning   = "warning";
-    public const info      = "info";
-    public const light     = "light";
-    public const dark      = "dark";
+    public const PRIMARY   = "primary";
+    public const SECONDARY = "secondary";
+    public const SUCCESS   = "success";
+    public const DANGER    = "danger";
+    public const WARNING   = "warning";
+    public const INFO      = "info";
+    public const LIGHT     = "light";
+    public const DARK      = "dark";
     public $message;
     public $severity;
 
     /**
-     * new Message
+     * Create a message
      *
      * @param string $message  the message
      * @param string $severity the severity
      */
-    public function __construct(string $message, string $severity=self::primary)
+    public function __construct(string $message, string $severity=self::PRIMARY)
     {
         $this->message  = $message;
         $this->severity = $severity;

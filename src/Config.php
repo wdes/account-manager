@@ -10,6 +10,11 @@ class Config
 {
     protected $dotenv;
 
+    /**
+     * Create a new configuration
+     *
+     * @param string $envDir Directory where .env is located
+     */
     public function __construct(string $envDir)
     {
         if (is_dir($envDir)) {

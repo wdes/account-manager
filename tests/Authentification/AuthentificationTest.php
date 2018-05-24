@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace AccountManager\Html;
 
-require_once __DIR__.'/../../src/Constants.php';
-
 use PHPUnit\Framework\TestCase;
 use \AccountManager\Authentification\Authentification;
 

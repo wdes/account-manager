@@ -31,7 +31,7 @@ class DatabaseTest extends TestCase
     /**
      * testProcessConditionsSingle
      * @depends testConnectAndInstance
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testProcessConditionsSingle(Database $db): void
@@ -50,7 +50,7 @@ class DatabaseTest extends TestCase
     /**
       * testProcessConditionsMultiple
       * @depends testConnectAndInstance
-      * @param Database $db
+      * @param Database $db Database instance
       * @return void
       */
     public function testProcessConditionsMultiple(Database $db): void
@@ -67,12 +67,12 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testGetBDD
+     * testGetBdd
      * @depends testConnectAndInstance
-     * @param Database $db
+     * @param Database $db Database instance
      * @return Database
      */
-    public function testGetBDD(Database $db): Database
+    public function testGetBdd(Database $db): Database
     {
         $pdo = $db->getPDO();
         $this->assertInstanceOf(PDO::class, $pdo);
@@ -82,8 +82,8 @@ class DatabaseTest extends TestCase
 
     /**
      * testCreateTable
-     * @depends testGetBDD
-     * @param Database $db
+     * @depends testGetBdd
+     * @param Database $db Database instance
      * @return Database
      */
     public function testCreateTable(Database $db): Database
@@ -106,7 +106,7 @@ class DatabaseTest extends TestCase
     /**
      * testSelectEmptyTableNoCriteria
      * @depends testCreateTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testSelectEmptyTableNoCriteria(Database $db): void
@@ -119,7 +119,7 @@ class DatabaseTest extends TestCase
     /**
      * testInsertTable
      * @depends testCreateTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return Database
      */
     public function testInsertTable(Database $db): Database
@@ -132,7 +132,7 @@ class DatabaseTest extends TestCase
     /**
      * testSelectTableNoCriteria
      * @depends testInsertTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testSelectTableNoCriteria(Database $db): void
@@ -143,8 +143,8 @@ class DatabaseTest extends TestCase
     /**
      * verifyCanFindOne
      * @depends testInsertTable
-     * @param Database $db
-     * @param string   $akeyvalue
+     * @param Database $db        Database instance
+     * @param string   $akeyvalue Expected value to column 'akey'
      * @return void
      */
     public function verifyCanFindOne(Database $db, string $akeyvalue): void
@@ -160,7 +160,7 @@ class DatabaseTest extends TestCase
     /**
      * testExists
      * @depends testInsertTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testExists(Database $db): void
@@ -172,7 +172,7 @@ class DatabaseTest extends TestCase
     /**
      * testInsertTableDuplicate
      * @depends testInsertTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return Database
      */
     public function testInsertTableDuplicate(Database $db): Database
@@ -185,7 +185,7 @@ class DatabaseTest extends TestCase
     /**
      * testSelectTableAfterDuplicateNoCriteria
      * @depends testInsertTableDuplicate
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testSelectTableAfterDuplicateNoCriteria(Database $db): void
@@ -196,7 +196,7 @@ class DatabaseTest extends TestCase
     /**
      * testInsertTable2
      * @depends testCreateTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return Database
      */
     public function testInsertTable2(Database $db): Database
@@ -209,7 +209,7 @@ class DatabaseTest extends TestCase
     /**
      * testSelectTableJoin
      * @depends testInsertTable2
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testSelectTableJoin(Database $db): void
@@ -228,12 +228,12 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableOperatorNOTLIKE
+     * testSelectTableOperatorNotLike
      * @depends testInsertTable2
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
-    public function testSelectTableOperatorNOTLIKE(Database $db): void
+    public function testSelectTableOperatorNotLike(Database $db): void
     {
         $obj = $db->Select("*", "test1", array(array("akey","NOT LIKE","updated")));
         $this->assertInstanceOf(PDOStatement::class, $obj);
@@ -242,8 +242,7 @@ class DatabaseTest extends TestCase
 
     /**
      * Provides test data for testSelectTableOperators
-     *
-     * @return array
+     * @return array[]
      */
     public function dataSelectOperatorsProvider(): array
     {
@@ -260,10 +259,10 @@ class DatabaseTest extends TestCase
      *
      * @dataProvider dataSelectOperatorsProvider
      * @depends testInsertTable2
-     * @param string            $key
-     * @param string            $operator
-     * @param int|string|double $value
-     * @param Database          $db
+     * @param string            $key      The key
+     * @param string            $operator The operator
+     * @param int|string|double $value    The value
+     * @param Database          $db       Database instance
      * @return void
      */
     public function testSelectTableOperators(string $key, string $operator, $value, Database $db): void
@@ -279,7 +278,7 @@ class DatabaseTest extends TestCase
     /**
      * testDelete
      * @depends testInsertTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testDelete(Database $db): void
@@ -291,7 +290,7 @@ class DatabaseTest extends TestCase
     /**
      * testDropTable
      * @depends testCreateTable
-     * @param Database $db
+     * @param Database $db Database instance
      * @return void
      */
     public function testDropTable(Database $db): void

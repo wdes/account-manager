@@ -7,6 +7,8 @@ declare(strict_types = 1);
   * Tout est fait en requêtes préparés
   */
 
+// phpcs:disable SlevomatCodingStandard.TypeHints.TypeHintDeclaration
+
 namespace AccountManager;
 
 use \AccountManager\Config;
@@ -18,6 +20,11 @@ class Database
 {
     private $bdd;
 
+    /**
+     * Create a Database instance
+     *
+     * @param Config $config Configuration
+     */
     public function __construct(Config $config)
     {
         $c         = $config->getDatabase();
@@ -33,6 +40,7 @@ class Database
      *                           préfixe
      * @param int    $countstart (optional) Identifiant de paramètre de
      *                           départ
+     * @param bool   $joincheck  (optional) Check if join can be made
      * @example processConditions(array("col1"=>"valeur1"),"WHERE")
      * @example processConditions(array("col1"=>"valeur1"),"WHERE",5) // Si déja 4 parametres de process voir Database::Insert
      * @example processConditions(array("table1.id"=>"table2.id"),"WHERE",0, true) // vérifier si clause de jointure est dans $kvalues
@@ -86,7 +94,7 @@ class Database
      * @param array  $duplicateReplace (optional) voir processConditions
      * @see Database::processConditions
      * @example Insert("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç","ip"=>"127.0.0.1"));
-     * @return boolean Exécution de la requête
+     * @return bool Exécution de la requête
      */
     public function Insert(string $tableName, array $kvalues, array $duplicateReplace = null): bool
     {
@@ -110,7 +118,7 @@ class Database
       * @see Database::processConditions
       * @example Delete("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç","ip"=>"127.0.0.1"));
       * @example Delete("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç",array("valeur",">")=>"3"));
-      * @return boolean Request success/failure
+      * @return bool Request success/failure
       */
     public function Delete(string $tableName, array $where): bool
     {
@@ -153,9 +161,9 @@ class Database
     /**
      * Check if row exists
      *
-     * @param string|array $tableName
-     * @param array        $wheres
-     * @return boolean
+     * @param string|array $tableName table name or tables names
+     * @param array        $wheres    Wheres
+     * @return bool row exists
      */
     public function Exists($tableName, array $wheres = array()): bool
     {
@@ -163,6 +171,11 @@ class Database
         return $req->fetch(PDO::FETCH_OBJ)->nbr > 0;
     }
 
+    /**
+     * Returns the PDO object
+     *
+     * @return PDO
+     */
     public function getPDO(): PDO
     {
         return $this->bdd;

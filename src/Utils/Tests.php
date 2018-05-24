@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace AccountManager\Utils;
 
+// @codingStandardsIgnoreFile
+
 class Tests
 {
 

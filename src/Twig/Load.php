@@ -2,15 +2,20 @@
 declare(strict_types = 1);
 namespace AccountManager\Twig;
 
-/**
- * Load
- */
+use \Twig_Environment;
+
 class Load
 {
     public static $cacheFS;
     public static $twig;
 
-    public static function load(string $tmpDir): void
+    /**
+     * Initialize static twig
+     *
+     * @param string $tmpDir The directory for temporary files
+     * @return void
+     */
+    public static function init(string $tmpDir): void
     {
         global $loader, $twig;
         Load::$cacheFS = new \Twig_Cache_Filesystem($tmpDir);
@@ -46,7 +51,12 @@ class Load
         Load::$twig = $twig;
     }
 
-    public static function getTwig(): \Twig_Environment
+    /**
+     * Get static twig object
+     *
+     * @return Twig_Environment
+     */
+    public static function getTwig(): Twig_Environment
     {
         return Load::$twig;
     }

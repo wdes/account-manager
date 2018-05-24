@@ -6,7 +6,7 @@ require_once __DIR__.'/../src/Constants.php';
 echo "LocaleDir: ".LOCALE_DIR."\r\n";
 
 if (is_dir(LOCALE_DIR)) {
-    \AccountManager\Utils\FS::rmdir_recursive(LOCALE_DIR);
+    \AccountManager\Utils\FS::rmdirRecursive(LOCALE_DIR);
 }
 mkdir(LOCALE_DIR);
 $podir = realpath(__DIR__."/../po/")."/";
