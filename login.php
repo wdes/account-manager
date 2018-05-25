@@ -7,7 +7,7 @@ use \AccountManager\Authentification\Users;
 
 $users      = new Users($db);
 $messages   = new Messages();
-$registered = false;
+$loggedIn = false;
 
 if (isset($_POST["login"])) {
     if (empty($_POST['password'])) {
@@ -21,6 +21,7 @@ if (isset($_POST["login"])) {
             $messages->add(new Message(_gettext("Welcome !"), Message::INFO));
             $auth->setLoggedIn(true);
             $auth->setUser($user);
+            $loggedIn = true;
         } else {
             $messages->add(new Message(_gettext("Password or username invalid !"), Message::DANGER));
         }
@@ -29,5 +30,5 @@ if (isset($_POST["login"])) {
 
 echo $twig->render(
     'pages/login.twig',
-    array('messages' => $messages->render(), 'registered' => $registered)
+    array('messages' => $messages->render(), 'loggedIn' => $loggedIn)
 );

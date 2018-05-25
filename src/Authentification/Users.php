@@ -65,7 +65,9 @@ class Users
             "password" => $password
             )
         );
-        $user          = $res->fetch(PDO::FETCH_OBJ);
+        if ( ($user          = $res->fetch(PDO::FETCH_OBJ)) === false ) {
+            $user = new stdClass();
+        }
         $user->success = $res->rowCount() === 1;
         return $user;
     }
