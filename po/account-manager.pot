@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0-alpha1\n"
 "Report-Msgid-Bugs-To: williamdes@wdes.fr\n"
-"POT-Creation-Date: 2018-05-23 11:55+0200\n"
+"POT-Creation-Date: 2018-05-25 21:58+0200\n"
 "PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/templates/pages/register.twig:8
-#: src/templates/pages/login.twig:21
+#: src/templates/pages/login.twig:29
 msgid "Register"
 msgstr ""
 
 #: src/templates/pages/register.twig:12
 #: src/templates/pages/register.twig:13
-#: src/templates/pages/login.twig:11
-#: src/templates/pages/login.twig:12
 msgid "Email address"
 msgstr ""
 
 #: src/templates/pages/register.twig:17
 #: src/templates/pages/register.twig:18
+#: src/templates/pages/login.twig:19
+#: src/templates/pages/login.twig:20
 msgid "Username"
 msgstr ""
 
 #: src/templates/pages/register.twig:22
 #: src/templates/pages/register.twig:23
-#: src/templates/pages/login.twig:16
-#: src/templates/pages/login.twig:17
+#: src/templates/pages/login.twig:24
+#: src/templates/pages/login.twig:25
 msgid "Password"
 msgstr ""
 
@@ -59,6 +59,10 @@ msgstr ""
 msgid "The account has been successfully created !"
 msgstr ""
 
-#: src/templates/pages/login.twig:20
+#: src/templates/pages/login.twig:14
+msgid "Redirecting to homepage"
+msgstr ""
+
+#: src/templates/pages/login.twig:28
 msgid "Sign in"
 msgstr ""
