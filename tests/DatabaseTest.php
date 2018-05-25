@@ -56,12 +56,12 @@ class DatabaseTest extends TestCase
     public function testProcessConditionsMultiple(Database $db): void
     {
         $whereTest = Tests::invokeMethod($db, 'processConditions', array(array("col1" => "valeur1","col2" => "valeur2"), "WHERE "));
-        $this->assertEquals('WHERE `col1`=:p1, `col2`=:p2', $whereTest->sql);
+        $this->assertEquals('WHERE `col1`=:p1 , `col2`=:p2', $whereTest->sql);
         $this->assertEquals(array(':p1' => 'valeur1',':p2' => 'valeur2'), $whereTest->ks);
         $this->assertNotEmpty($whereTest);
 
         $whereTest = Tests::invokeMethod($db, 'processConditions', array(array("col1" => "valeur1","col2" => "valeur2")));
-        $this->assertEquals('`col1`=:p1, `col2`=:p2', $whereTest->sql);
+        $this->assertEquals('`col1`=:p1 , `col2`=:p2', $whereTest->sql);
         $this->assertEquals(array(':p1' => 'valeur1',':p2' => 'valeur2'), $whereTest->ks);
         $this->assertNotEmpty($whereTest);
     }

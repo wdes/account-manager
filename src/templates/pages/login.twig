@@ -6,10 +6,10 @@
             <i class="mdi mdi-account mdi-48"></i>
             <h1 class="h3 mb-3 font-weight-normal">{% trans "Login" %}</h1>
         </div>
-
+        {{ html(messages) }}
         <div class="form-label-group">
-            <input type="email" id="email" name="email" value="{{ _post.email }}" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
-            <label for="email">{% trans "Email address" %}</label>
+            <input type="username" id="username" name="username" value="{{ _post.username }}" class="form-control" placeholder="{% trans "Username" %}" required autofocus>
+            <label for="username">{% trans "Username" %}</label>
         </div>
 
         <div class="form-label-group">
@@ -17,7 +17,7 @@
             <label for="password">{% trans "Password" %}</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign in" %}</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login" value="login">{% trans "Sign in" %}</button>
         <p class="mt-5 mb-3 text-muted text-right"><a href="register.php">{% trans "Register" %}</a></p>
         </form>
     </div>

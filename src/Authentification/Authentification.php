@@ -2,9 +2,8 @@
 declare(strict_types = 1);
 namespace AccountManager\Authentification;
 
-/**
- * Authentification
- */
+use \stdClass;
+
 class Authentification
 {
     protected $loggedIn = false;
@@ -37,6 +36,28 @@ class Authentification
     {
         $this->check();
         return $this->loggedIn;
+    }
+
+    /**
+     * Set loggedIn
+     *
+     * @param boolean $loggedIn Is loggedIn
+     * @return void
+     */
+    public function setLoggedIn(bool $loggedIn): void
+    {
+        $_SESSION["loggedIn"] = $loggedIn;
+    }
+
+    /**
+     * Set the user
+     *
+     * @param stdClass $user User object
+     * @return void
+     */
+    public function setUser(stdClass $user): void
+    {
+        $_SESSION["user"] = $user;
     }
 
 }

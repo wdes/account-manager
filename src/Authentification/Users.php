@@ -3,12 +3,19 @@ declare(strict_types = 1);
 namespace AccountManager\Authentification;
 
 use \AccountManager\Database;
+use \PDO;
+use \stdClass;
 
 /**
  * Users
  */
 class Users
 {
+    /**
+     * Database instance
+     *
+     * @var Database
+     */
     protected $db;
 
     /**
@@ -42,6 +49,28 @@ class Users
     }
 
     /**
+     * Login user
+     *
+     * @param string $username The username
+     * @param string $password The password
+     * @return bool|stdClass
+     */
+    public function login(string $username, string $password): stdClass
+    {
+        $res           = $this->db->Select(
+            "*",
+            "users",
+            array(
+            "username" => $username,
+            "password" => $password
+            )
+        );
+        $user          = $res->fetch(PDO::FETCH_OBJ);
+        $user->success = $res->rowCount() === 1;
+        return $user;
+    }
+
+    /**
      * Check if username is available
      *
      * @param string $username The username
@@ -49,12 +78,12 @@ class Users
      */
     public function usernameAvailable(string $username): bool
     {
-        return $this->db->Select(
+        return $this->db->Exists(
             "users",
             array(
             "username" => $username
             )
-        );
+        ) === false;
     }
 
 }

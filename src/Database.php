@@ -34,26 +34,33 @@ class Database
 
     /**
      * Créé une chaine clef=valeur ou clef opérateur valeur
-     * @param array  $kvalues    (cle=>valeur,cle2=>valeur2) ou (cle=>valeur,
-     *                           array('cle','opérateur','valeur'))
-     * @param string $prefix     (optional) Un
-     *                           préfixe
-     * @param int    $countstart (optional) Identifiant de paramètre de
-     *                           départ
-     * @param bool   $joincheck  (optional) Check if join can be made
+     * @param array  $kvalues      (cle=>valeur,cle2=>valeur2) ou (cle=>valeur,
+     *                             array('cle','opérateur','valeur'))
+     * @param string $prefix       (optional) Un
+     *                             préfixe
+     * @param int    $countstart   (optional) Identifiant de paramètre
+     *                             de départ
+     * @param bool   $joincheck    (optional) Check if join can be made
+     * @param string $glueOperator (optional) Operator to glue parts (OR, AND, , )
      * @example processConditions(array("col1"=>"valeur1"),"WHERE")
      * @example processConditions(array("col1"=>"valeur1"),"WHERE",5) // Si déja 4 parametres de process voir Database::Insert
      * @example processConditions(array("table1.id"=>"table2.id"),"WHERE",0, true) // vérifier si clause de jointure est dans $kvalues
      * @example processConditions(array("col1"=>"valeur1"))
      * @return stdClass L'objet
      */
-    private function processConditions(array $kvalues, string $prefix = "", int $countstart = 0, bool $joincheck = false): stdClass
-    {
-        $out      = new stdClass();
-        $out->sql = "";
-        $out->ks  = array();
-        $i        = $countstart;
-        $kcount   = count($kvalues);
+    private function processConditions(
+        array $kvalues,
+        string $prefix = "",
+        int $countstart = 0,
+        bool $joincheck = false,
+        string $glueOperator = ","
+    ): stdClass {
+        $out          = new stdClass();
+        $out->sql     = "";
+        $out->ks      = array();
+        $i            = $countstart;
+        $kcount       = count($kvalues);
+        $glueOperator = " ".$glueOperator." ";
         foreach ($kvalues as $key => $value) {
             if ($i == $countstart) { // Add prefix at start
                 $out->sql .= $prefix;
@@ -81,7 +88,7 @@ class Database
             }
 
             if ($kcount != ($i - $countstart)) {// No , at the end
-                $out->sql .= ", ";
+                $out->sql .= $glueOperator;
             }
         }
         return $out;
@@ -150,7 +157,7 @@ class Database
 
         $sql .= $cols;
         $sql .= " FROM ".$tableName;
-        $w    = self::processConditions($wheres, " WHERE ", 0, $multi_tables);
+        $w    = self::processConditions($wheres, " WHERE ", 0, $multi_tables, "AND");
         $sql .= $w->sql;
 
         $req = $this->bdd->prepare($sql);
