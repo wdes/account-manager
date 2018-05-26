@@ -3,6 +3,13 @@ version: "2"
 exclude_patterns:
 - "public/"
 - "po/"
+- "sql/"
+- "po/"
+- ".github/"
+- "po/"
+- "*.sh"
+- "*.twig"
+- "*.xml"
 - "**/vendor/"
 - "**/node_modules/"
 
