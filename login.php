@@ -5,8 +5,8 @@ use \AccountManager\Html\Message;
 use \AccountManager\Html\Messages;
 use \AccountManager\Authentification\Users;
 
-$users      = new Users($db);
-$messages   = new Messages();
+$users    = new Users($db);
+$messages = new Messages();
 $loggedIn = false;
 
 if (isset($_POST["login"])) {

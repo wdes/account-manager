@@ -1,14 +1,11 @@
 dist: trusty
 
 language: php
-rvm:
-  - 2.2.0
 
 services:
   - mysql
 
 php:
-  - "7.0"
   - "7.1"
   - "7.2"
 
@@ -21,11 +18,10 @@ env:
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then ./cc-test-reporter before-build; fi
   - ./scripts/ci/install.sh
 
 script:
-  - bundle exec rspec
   - ./scripts/po_to_mo.php
   - ./scripts/ci/ci-$CI_TYPE.sh
 
@@ -39,28 +35,20 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then ./scripts/ci/codeclimate.sh; fi
 
 matrix:
   fast_finish: true
   include:
+    - php: "7.2"
+      env: CI_TYPE=phpcs
+
     - os: osx
       language: generic
       php: "7.2"
       env: CI_TYPE=phpunit
       before_install:
-        - brew update
-        - brew install php72 mariadb
-        - sed -i -e 's/^memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/7.2/php.ini
-        - curl https://getcomposer.org/installer | php
-        - ln -s "`pwd`/composer.phar" /usr/local/bin/composer
-
-  allow_failures:
-    - php: "7.0"
-      env: CI_TYPE=phpunit
-    - os: osx
-      php: "7.2"
-      env: CI_TYPE=phpunit
+        - ./scripts/ci/install-osx.sh
 
 cache:
   apt: true
@@ -69,6 +57,7 @@ cache:
     - $HOME/.cache/bower
     - $HOME/.npm
     - /var/cache/apt
+    - ~/Library/Caches/Homebrew
 
 addons:
   apt:

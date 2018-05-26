@@ -7,7 +7,7 @@ node_modules
 *.po~
 public/assets/js/bundle.js
 .env
-coverage.xml
+build/
 \.php_cs\.cache
 
 src/Twig/I18nExtension\.php

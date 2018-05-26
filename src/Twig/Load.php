@@ -44,7 +44,6 @@ class Load
         );
 
         $twig->addExtension(new \AccountManager\Twig\I18nExtension());
-        $twig->addGlobal('_session', @$_SESSION);
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
         $twig->addGlobal('locale', \Locale::getDefault());

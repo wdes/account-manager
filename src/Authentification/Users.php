@@ -6,16 +6,8 @@ use \AccountManager\Database;
 use \PDO;
 use \stdClass;
 
-/**
- * Users
- */
 class Users
 {
-    /**
-     * Database instance
-     *
-     * @var Database
-     */
     protected $db;
 
     /**
@@ -57,7 +49,7 @@ class Users
      */
     public function login(string $username, string $password): stdClass
     {
-        $res           = $this->db->Select(
+        $res  = $this->db->Select(
             "*",
             "users",
             array(
@@ -65,7 +57,8 @@ class Users
             "password" => $password
             )
         );
-        if ( ($user          = $res->fetch(PDO::FETCH_OBJ)) === false ) {
+        $user = $res->fetch(PDO::FETCH_OBJ);
+        if ($user === false) {
             $user = new stdClass();
         }
         $user->success = $res->rowCount() === 1;

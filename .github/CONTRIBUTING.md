@@ -117,9 +117,10 @@ project:
    ```bash
    git push origin <topic-branch-name>
    ```
+
 7. Sign your commits with a GPG key, If you forgot to do so follow [this](https://stackoverflow.com/a/1186549/5155484) to sign every commit.
 
-7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
+8. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
     with a clear title and description.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project owner to

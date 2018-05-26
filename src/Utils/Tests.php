@@ -16,7 +16,7 @@ class Tests
      *
      * @return mixed Method return.
      */
-    public static function invokeMethod(object &$object, string $methodName, array $parameters = array())
+    public static function invokeMethod(&$object, string $methodName, array $parameters = array())
     {
         $reflection = new \ReflectionClass(get_class($object));
         $method     = $reflection->getMethod($methodName);

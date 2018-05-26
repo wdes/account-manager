@@ -16,6 +16,7 @@
     <exclude-pattern>*/sql-backup/*</exclude-pattern>
     <exclude-pattern>*/tmp/*</exclude-pattern>
     <exclude-pattern>*/public/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
     <exclude-pattern>*/Twig/I18n/*</exclude-pattern>
     <config name="installed_paths" value="../../slevomat/coding-standard"/>
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
