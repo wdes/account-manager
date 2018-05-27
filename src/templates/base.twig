@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ locale }}">
+  <head>
+      {% include 'html/head+meta.twig' %}
+      {% block head %}
+      {% endblock %}
+  </head>
+  <body>
+    <header>
+      {% block header %}
+      {% endblock %}
+    </header>
+    <main role="main">
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer>
+      {% block footer %}
+      {% endblock %}
+    </footer>
+  </body>
+</html>

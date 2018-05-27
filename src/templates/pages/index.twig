@@ -1,3 +1,6 @@
-{% include 'head.twig' %}
-<h1>Hello !</h1>
-{% include 'foot.twig' %}
+{% extends 'base+login.twig' %}
+
+{% block title %}{% trans "Index" %}{% endblock %}
+{% block content %}
+    <h1>Hello !</h1>
+{% endblock %}

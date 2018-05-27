@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ locale }}">
+  <head>
+      {% include 'html/head+meta.twig' %}
+      <title>Account Manager | {% block title %}{% endblock %}</title>
+      {% include 'html/head+links.twig' %}
+      {% block head %}
+      {% endblock %}
+  </head>
+  <body>
+    <header>
+      {% block header %}
+      {% endblock %}
+    </header>
+    {% include 'html/navbar.twig' %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer>
+      {% block footer %}
+      {% endblock %}
+    </footer>
+  </body>
+</html>

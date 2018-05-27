@@ -10,6 +10,7 @@ exclude_patterns:
 - ".mdlrc"
 - "LICENSE"
 - ".travis.yml"
+- "package-lock.json"
 - ".gitignore"
 - ".gitmodules"
 - ".env-example"
