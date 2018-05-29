@@ -13,7 +13,7 @@ $shortTempDir = str_replace(PROJECT_ROOT, "", TEMPLATE_DIR);
 
 \AccountManager\Utils\FS::rmdirRecursive($tmpDir);
 \AccountManager\Twig\Load::init($tmpDir);
-$__twig = \AccountManager\Twig\Load::getTwig();
+$__twig                 = \AccountManager\Twig\Load::getTwig();
 $mappings               = new stdClass();
 $mappings->mappings     = array();
 $mappings->replacements = array();

@@ -7,7 +7,6 @@ declare(strict_types = 1);
   * Tout est fait en requêtes préparés
   */
 
-// phpcs:disable SlevomatCodingStandard.TypeHints.TypeHintDeclaration
 
 namespace AccountManager;
 
@@ -34,14 +33,14 @@ class Database
 
     /**
      * Créé une chaine clef=valeur ou clef opérateur valeur
-     * @param array  $kvalues      (cle=>valeur,cle2=>valeur2) ou (cle=>valeur,
-     *                             array('cle','opérateur','valeur'))
-     * @param string $prefix       (optional) Un
-     *                             préfixe
-     * @param int    $countstart   (optional) Identifiant de paramètre
-     *                             de départ
-     * @param bool   $joincheck    (optional) Check if join can be made
-     * @param string $glueOperator (optional) Operator to glue parts (OR, AND, , )
+     * @param string[] $kvalues      (cle=>valeur,cle2=>valeur2) ou (cle=>valeur,
+     *                               array('cle','opérateur','valeur'))
+     * @param string   $prefix       (optional) Un
+     *                               préfixe
+     * @param int      $countstart   (optional) Identifiant de
+     *                               paramètre de départ
+     * @param bool     $joincheck    (optional) Check if join can be made
+     * @param string   $glueOperator (optional) Operator to glue parts (OR, AND, , )
      * @example processConditions(array("col1"=>"valeur1"),"WHERE")
      * @example processConditions(array("col1"=>"valeur1"),"WHERE",5) // Si déja 4 parametres de process voir Database::Insert
      * @example processConditions(array("table1.id"=>"table2.id"),"WHERE",0, true) // vérifier si clause de jointure est dans $kvalues
@@ -96,9 +95,9 @@ class Database
 
     /**
      * Insertion
-     * @param string $tableName        Nom de la table
-     * @param array  $kvalues          voir processConditions
-     * @param array  $duplicateReplace (optional) voir processConditions
+     * @param string   $tableName        Nom de la table
+     * @param string[] $kvalues          voir processConditions
+     * @param string[] $duplicateReplace (optional) voir processConditions
      * @see Database::processConditions
      * @example Insert("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç","ip"=>"127.0.0.1"));
      * @return bool Exécution de la requête
@@ -120,8 +119,8 @@ class Database
 
     /**
       * Suppression
-      * @param string $tableName Table name
-      * @param array  $where     WHERE, see processConditions
+      * @param string   $tableName Table name
+      * @param string[] $where     WHERE, see processConditions
       * @see Database::processConditions
       * @example Delete("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç","ip"=>"127.0.0.1"));
       * @example Delete("test_william_dev",array("id"=>1,"valeur"=>"ééééé'''àààççç",array("valeur",">")=>"3"));
@@ -137,9 +136,9 @@ class Database
 
     /**
      * Sélection
-     * @param array|string $cols      (nom des colonnes) ou nom de la colonne
-     * @param array|string $tableName Nom de la table ou noms des tables array('table1','table2')
-     * @param array        $wheres    (optional) (nom de champ => valeur) wheres
+     * @param string[]|string $cols      (nom des colonnes) ou nom de la colonne
+     * @param string[]|string $tableName Nom de la table ou noms des tables array('table1','table2')
+     * @param string[]        $wheres    (optional) (nom de champ => valeur) wheres
      * @example Select("test_william_dev",array("id","valeur","ip"));
      * @example Select("test_william_dev",array("id","valeur","ip"),array("ip"=>"127.0.0.1"));
      * @return PDOStatement L'objet de la requête
@@ -168,8 +167,8 @@ class Database
     /**
      * Check if row exists
      *
-     * @param string|array $tableName table name or tables names
-     * @param array        $wheres    Wheres
+     * @param string[]|string $tableName table name or tables names
+     * @param string[]        $wheres    Wheres
      * @return bool row exists
      */
     public function Exists($tableName, array $wheres = array()): bool
