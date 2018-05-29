@@ -13,7 +13,7 @@ $shortTempDir = str_replace(PROJECT_ROOT, "", TEMPLATE_DIR);
 
 \AccountManager\Utils\FS::rmdirRecursive($tmpDir);
 \AccountManager\Twig\Load::init($tmpDir);
-
+$__twig = \AccountManager\Twig\Load::getTwig();
 $mappings               = new stdClass();
 $mappings->mappings     = array();
 $mappings->replacements = array();
@@ -58,8 +58,8 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(TEMPLATE_D
 
     if ($tmpl->isFile()) {
         $shortName = str_replace(TEMPLATE_DIR, '', $tmpl);
-        $template  = $twig->loadTemplate($shortName);
-        $key       = \AccountManager\Twig\Load::$cacheFS->generateKey($shortName, $twig->getTemplateClass($shortName));
+        $template  = $__twig->loadTemplate($shortName);
+        $key       = \AccountManager\Twig\Load::getTwigCacheFS()->generateKey($shortName, $__twig->getTemplateClass($shortName));
 
         $cacheFile = str_replace(
             $tmpDir,
@@ -85,7 +85,15 @@ exec(
     ' -p ./locale'.
     ' --from-code=UTF-8'.
     ' --add-comments=l10n'.
-    ' --add-location -L PHP $(find "'.TMP_DIR.'" \( -name "*.php" \) -not -path "'.
-    TMP_DIR.'twig/*" -not -path "'.PROJECT_ROOT.'vendor/*" | sort) '.
+    ' --add-location -L PHP $(find "'.PROJECT_ROOT.'" \( -name "*.php" \)'.
+    ' -not -path "'.TMP_DIR.'twig/*"'.
+    ' -not -path "'.PROJECT_ROOT.'vendor/*"'.
+    ' -not -path "'.PROJECT_ROOT.'sql/*"'.
+    ' -not -path "'.PROJECT_ROOT.'scripts/*"'.
+    ' -not -path "'.PROJECT_ROOT.'public/*"'.
+    ' -not -path "'.PROJECT_ROOT.'po/*"'.
+    ' -not -path "'.PROJECT_ROOT.'sql-backup/*"'.
+    ' -not -path "'.PROJECT_ROOT.'node_modules/*"'.
+    ' -not -path "'.PROJECT_ROOT.'tests/*"  | sort) '.
     '-o '.PO_DIR."account-manager.pot"
 );

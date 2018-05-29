@@ -1,8 +1,15 @@
 <?php
 declare(strict_types = 1);
+
 namespace AccountManager\Twig;
 
 use \Twig_Environment;
+use \Twig_Cache_Filesystem;
+use \Twig_Loader_Filesystem;
+use \Twig_SimpleFunction;
+use \Twig_Markup;
+use \Locale;
+use \AccountManager\Twig\I18nExtension;
 
 class Load
 {
@@ -17,10 +24,10 @@ class Load
      */
     public static function init(string $tmpDir): void
     {
-        global $loader, $twig;
-        Load::$cacheFS = new \Twig_Cache_Filesystem($tmpDir);
-        $loader        = new \Twig_Loader_Filesystem(TEMPLATE_DIR);
-        $twig          = new \Twig_Environment(
+        global $twig;
+        Load::$cacheFS = new Twig_Cache_Filesystem($tmpDir);
+        $loader        = new Twig_Loader_Filesystem(TEMPLATE_DIR);
+        $twig          = new Twig_Environment(
             $loader, array(
             'cache' => Load::$cacheFS,
             'debug' => true
@@ -36,17 +43,17 @@ class Load
             )
         );
         $twig->addFunction(
-            new \Twig_SimpleFunction(
+            new Twig_SimpleFunction(
                 'html', function ($code) {
-                    return new \Twig_Markup($code, "utf-8");
+                    return new Twig_Markup($code, "utf-8");
                 }
             )
         );
 
-        $twig->addExtension(new \AccountManager\Twig\I18nExtension());
+        $twig->addExtension(new I18nExtension());
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
-        $twig->addGlobal('locale', \Locale::getDefault());
+        $twig->addGlobal('locale', Locale::getDefault());
         Load::$twig = $twig;
     }
 
@@ -58,6 +65,16 @@ class Load
     public static function getTwig(): Twig_Environment
     {
         return Load::$twig;
+    }
+
+    /**
+     * Get static twig cache FS object
+     *
+     * @return Twig_Cache_Filesystem
+     */
+    public static function getTwigCacheFS(): Twig_Cache_Filesystem
+    {
+        return Load::$cacheFS;
     }
 
 }
