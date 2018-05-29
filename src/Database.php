@@ -74,9 +74,9 @@ class Database
                 $is_join = false;
                 if ($joincheck) {
                     $is_join = (
-                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", $key)
+                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", (string) $key)
                         &&
-                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", $value)
+                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", (string) $value)
                     );
                 }
                 if ($is_join) {
