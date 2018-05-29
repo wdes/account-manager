@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wdes/account-manager 1.0.0-alpha1\n"
 "Report-Msgid-Bugs-To: williamdes@wdes.fr\n"
-"POT-Creation-Date: 2018-05-25 21:58+0200\n"
+"POT-Creation-Date: 2018-05-29 22:26+0200\n"
 "PO-Revision-Date: 2018-05-17 23:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,52 +19,111 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/templates/pages/register.twig:8
-#: src/templates/pages/login.twig:29
-msgid "Register"
+#: /mnt/Dev/account-manager/login.php:14
+#: /mnt/Dev/account-manager/register.php:14
+msgid "Empty password"
 msgstr ""
 
+#: /mnt/Dev/account-manager/login.php:16
+#: /mnt/Dev/account-manager/register.php:18
+msgid "Empty username"
+msgstr ""
+
+#: /mnt/Dev/account-manager/login.php:21
+msgid "Welcome !"
+msgstr ""
+
+#: /mnt/Dev/account-manager/login.php:26
+msgid "Password or username invalid !"
+msgstr ""
+
+#: /mnt/Dev/account-manager/register.php:16
+msgid "Empty confirmation password"
+msgstr ""
+
+#: /mnt/Dev/account-manager/register.php:27
+msgid "Passwords are different"
+msgstr ""
+
+#: /mnt/Dev/account-manager/register.php:30
+msgid "Username already taken :("
+msgstr ""
+
+#: src/templates/pages/index.twig:3
+#: src/templates/pages/websites.twig:3
+msgid "Index"
+msgstr ""
+
+#: src/templates/pages/index.twig:8
+#: src/templates/html/sidebar.twig:7
+msgid "Dashboard"
+msgstr ""
+
+#: src/templates/pages/index.twig:9
+msgid "all usefull infos here"
+msgstr ""
+
+#: src/templates/pages/index.twig:19
+#: src/templates/html/sidebar.twig:12
+#: src/templates/pages/websites.twig:8
+msgid "Websites"
+msgstr ""
+
+#: src/templates/pages/index.twig:24
+#: src/templates/pages/websites.twig:16
+msgid "My websites"
+msgstr ""
+
+#: src/templates/pages/register.twig:3
 #: src/templates/pages/register.twig:12
-#: src/templates/pages/register.twig:13
-msgid "Email address"
+#: src/templates/pages/login.twig:34
+msgid "Register"
 msgstr ""
 
 #: src/templates/pages/register.twig:17
 #: src/templates/pages/register.twig:18
-#: src/templates/pages/login.twig:19
-#: src/templates/pages/login.twig:20
-msgid "Username"
+msgid "Email address"
 msgstr ""
 
 #: src/templates/pages/register.twig:22
 #: src/templates/pages/register.twig:23
-#: src/templates/pages/login.twig:24
-#: src/templates/pages/login.twig:25
-msgid "Password"
+#: src/templates/pages/login.twig:23
+msgid "Username"
 msgstr ""
 
 #: src/templates/pages/register.twig:27
 #: src/templates/pages/register.twig:28
-msgid "Password confirmation"
-msgstr ""
-
-#: src/templates/pages/register.twig:31
-msgid "Sign up"
+#: src/templates/pages/login.twig:26
+msgid "Password"
 msgstr ""
 
 #: src/templates/pages/register.twig:32
-#: src/templates/pages/login.twig:7
-msgid "Login"
+#: src/templates/pages/register.twig:33
+msgid "Password confirmation"
 msgstr ""
 
 #: src/templates/pages/register.twig:37
+msgid "Sign up"
+msgstr ""
+
+#: src/templates/pages/register.twig:44
 msgid "The account has been successfully created !"
 msgstr ""
 
-#: src/templates/pages/login.twig:14
+#: src/templates/pages/register.twig:49
+#: src/templates/pages/login.twig:3
+#: src/templates/pages/login.twig:11
+msgid "Login"
+msgstr ""
+
+#: src/templates/pages/websites.twig:9
+msgid "my websites"
+msgstr ""
+
+#: src/templates/pages/login.twig:16
 msgid "Redirecting to homepage"
 msgstr ""
 
-#: src/templates/pages/login.twig:28
+#: src/templates/pages/login.twig:30
 msgid "Sign in"
 msgstr ""
