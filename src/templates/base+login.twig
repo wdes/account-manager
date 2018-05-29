@@ -7,19 +7,25 @@
       {% block head %}
       {% endblock %}
   </head>
-  <body>
-    <header>
-      {% block header %}
-      {% endblock %}
-    </header>
-    {% include 'html/navbar.twig' %}
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-      {% block content %}
-      {% endblock %}
-    </main>
-    <footer>
-      {% block footer %}
-      {% endblock %}
-    </footer>
+  <body class="hold-transition skin-blue sidebar-mini {% block class_body %}{% endblock %}">
+    <div class="wrapper">
+      <header class="main-header">
+        {% include 'html/navbar.twig' %}
+        {% block header %}
+        {% endblock %}
+      </header>
+      {% include 'html/sidebar.twig' %}
+      <div class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <footer>
+        {% block footer %}
+        {% endblock %}
+      </footer>
+    </div>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/AdminLTE.min.js') }}"></script>
   </body>
 </html>

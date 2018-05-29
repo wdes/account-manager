@@ -1,6 +1,46 @@
 {% extends 'base+login.twig' %}
 
-{% block title %}{% trans "Index" %}{% endblock %}
+{% block title %}{% trans "Index" %}
+{% endblock %}
 {% block content %}
-    <h1>Hello !</h1>
+    <section class="content-header">
+        <h1>
+            {% trans "Dashboard" %}
+            <small>{% trans "all usefull infos here" %}</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{ websites.count }}</h3>
+                        <p>{% trans "Websites" %}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="mdi mdi-web"></i>
+                    </div>
+                    <a href="websites.php" class="small-box-footer">{% trans "My websites" %}
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>2</h3>
+
+                        <p>a</p>
+                    </div>
+                    <div class="icon">
+                        <i class="mdi mdi-web"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

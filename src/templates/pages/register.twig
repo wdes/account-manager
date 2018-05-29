@@ -1,47 +1,52 @@
 {% extends 'base.twig' %}
 
 {% block title %}{% trans "Register" %}{% endblock %}
+{% block class_body %}hold-transition register-page{% endblock %}
 {% block content %}
-    <div class="col-md-12 d-flex justify-content-center">
-        <div class="col-md-4">
-        {% if registered == false %}
-        <form class="form-signin" method="POST">
-            <div class="text-center mb-4">
-                <i class="mdi mdi-account mdi-48"></i>
-                <h1 class="h3 mb-3 font-weight-normal">{% trans "Register" %}</h1>
-            </div>
-            {{ html(messages) }}
-            <div class="form-label-group">
-                <input type="email" id="email" name="email" value="{{ _post.email }}" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
-                <label for="email">{% trans "Email address" %}</label>
-            </div>
+<div class="register-box">
+  <div class="register-logo">
+    Account manager
+  </div>
 
-            <div class="form-label-group">
-                <input type="username" id="username" name="username" value="{{ _post.username }}" class="form-control" placeholder="{% trans "Username" %}" required>
-                <label for="username">{% trans "Username" %}</label>
-            </div>
-
-            <div class="form-label-group">
-                <input type="password" id="password1" name="password1" class="form-control" placeholder="{% trans "Password" %}" required>
-                <label for="password">{% trans "Password" %}</label>
-            </div>
-
-            <div class="form-label-group">
-                <input type="password" id="password2" name="password2" class="form-control" placeholder="{% trans "Password confirmation" %}" required>
-                <label for="password">{% trans "Password confirmation" %}</label>
-            </div>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="register" value="register">{% trans "Sign up" %}</button>
-            <p class="mt-5 mb-3 text-muted text-right"><a href="login.php">{% trans "Login" %}</a></p>
-            </form>
-        {% else %}
-            <div class="text-center mb-4">
-                <i class="mdi mdi-account mdi-48"></i>
-                <h1 class="h3 mb-3 font-weight-normal">{% trans "The account has been successfully created !" %}</h1>
-            </div>
-            {{ html(messages) }}
-        {% endif %}
-
-        </div>
+  <div class="register-box-body">
+    <p class="login-box-msg">{% trans "Register" %}</p>
+    {% if registered == false %}
+    <form method="post">
+    {{ html(messages) }}
+    <div class="form-group has-feedback">
+        <input type="email" id="email" name="email" value="{{ _post.email }}" class="form-control" placeholder="{% trans "Email address" %}" required autofocus>
+        <label for="email">{% trans "Email address" %}</label>
     </div>
+
+    <div class="form-group has-feedback">
+        <input type="username" id="username" name="username" value="{{ _post.username }}" class="form-control" placeholder="{% trans "Username" %}" required>
+        <label for="username">{% trans "Username" %}</label>
+    </div>
+
+    <div class="form-group has-feedback">
+        <input type="password" id="password1" name="password1" class="form-control" placeholder="{% trans "Password" %}" required>
+        <label for="password">{% trans "Password" %}</label>
+    </div>
+
+    <div class="form-group has-feedback">
+        <input type="password" id="password2" name="password2" class="form-control" placeholder="{% trans "Password confirmation" %}" required>
+        <label for="password">{% trans "Password confirmation" %}</label>
+    </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" name="register" value="register" class="btn btn-primary btn-block btn-flat">{% trans "Sign up" %}</button>
+        </div>
+      </div>
+    </form>
+    {% else %}
+        <div class="text-center mb-4">
+            <i class="mdi mdi-account mdi-48"></i>
+            <h1 class="h3 mb-3 font-weight-normal">{% trans "The account has been successfully created !" %}</h1>
+        </div>
+        {{ html(messages) }}
+    {% endif %}
+
+    <a href="login.php" class="text-center">{% trans "Login" %}</a>
+  </div>
+</div>
 {% endblock %}

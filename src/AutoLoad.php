@@ -15,3 +15,5 @@ _bind_textdomain_codeset('account-manager', 'UTF-8');
 $auth   = new \AccountManager\Authentification\Authentification();
 $config = new \AccountManager\Config(PROJECT_ROOT);
 $db     = new \AccountManager\Database($config);
+
+\AccountManager\Twig\Load::getTwig()->addGlobal('_auth', $auth);

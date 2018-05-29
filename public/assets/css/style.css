@@ -1,0 +1,6 @@
+.main-header .sidebar-toggle {
+    font: normal normal normal 18px "Material Design Icons" !important;
+}
+.main-header .sidebar-toggle:before {
+    content: "\f35c" !important;
+}

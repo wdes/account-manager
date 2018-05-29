@@ -1,42 +1,32 @@
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Account manager</a>
-    <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">Sign out</a>
-    </li>
+<a href="index.php" class="logo">
+  <span class="logo-mini">AM</span>
+      <span class="logo-lg">Account manager</span>
+</a>
+<nav class="navbar navbar-static-top">
+  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
+
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li class="dropdown user user-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="hidden-xs">{{ _auth.isLoggedIn() ? _auth.getUser().username : '' }}</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="user-footer">
+            <div class="pull-left">
+              <a href="#" class="btn btn-default btn-flat">Profile</a>
+            </div>
+            <div class="pull-right">
+              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+            </div>
+          </li>
+        </ul>
+      </li>
     </ul>
+  </div>
 </nav>
-<div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <i class="mdi mdi-view-dashboard"></i>
-                  {% trans 'Dashboard' %}
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-account"></i>
-                  {% trans 'Accounts' %}
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-web"></i>
-                  {% trans 'Websites' %}
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-key-variant"></i>
-                  {% trans 'GPG keys' %}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-</div>

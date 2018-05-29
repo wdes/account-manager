@@ -2,10 +2,11 @@
 <html lang="{{ locale }}">
   <head>
       {% include 'html/head+meta.twig' %}
+      {% include 'html/head+links.twig' %}
       {% block head %}
       {% endblock %}
   </head>
-  <body>
+  <body class="{% block class_body %}{% endblock %}">
     <header>
       {% block header %}
       {% endblock %}

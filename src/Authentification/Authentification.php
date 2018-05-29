@@ -60,4 +60,14 @@ class Authentification
         $_SESSION["user"] = $user;
     }
 
+    /**
+     * Get the user
+     *
+     * @return stdClass The user object
+     */
+    public function getUser(): stdClass
+    {
+        return $_SESSION["user"];
+    }
+
 }
