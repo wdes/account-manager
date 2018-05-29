@@ -1,33 +1,35 @@
 {% extends 'base+login.twig' %}
 
-{% block title %}{% trans "Websites" %}
+{% block title %}{% trans "Identities" %}
 {% endblock %}
 {% block content %}
     <section class="content-header">
         <h1>
-            {% trans "Websites" %}
-            <small>{% trans "my websites" %}</small>
+            {% trans "Identities" %}
+            <small>{% trans "my identities" %}</small>
         </h1>
     </section>
 
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">{% trans "My websites" %}</h3>
+              <h3 class="box-title">{% trans "My Identities" %}</h3>
             </div>
             <div class="box-body">
               <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>Label</th>
+                        <th>Value</th>
+                        <th>Type</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for website in websites.websites() %}
+                {% for identity in identities.identities() %}
                     <tr>
-                        <td>{{ website.id }}</td>
-                        <td>{{ website.label }}</td>
+                        <td>{{ identity.idId }}</td>
+                        <td>{{ identity.valueId }}</td>
+                        <td>{{ identity.typeLabel }}</td>
                     </tr>
                 {% endfor %}
               </table>
