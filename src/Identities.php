@@ -64,9 +64,48 @@ class Identities
             array(
                 "idUser" => $this->auth->getUser()->id,
                 "identities.idTypeIdentity" => "identities__types.id",
+                "identities__users.idIdentity" => "identities.id",
             )
         );
         return $obj->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Get the identity types
+     *
+     * @return stdClass[]
+     */
+    public function types(): array
+    {
+        $obj = $this->db->Select(
+            array(
+                "id",
+                "label"
+            ),
+            "identities__types"
+        );
+        return $obj->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Add an identity
+     *
+     * @param integer $idType Id of identity type
+     * @param string  $value  Value
+     * @return void
+     */
+    public function add(int $idType, string $value): void
+    {
+        if ($this->db->Insert(
+            "identities",
+            array("value" => $value, "idTypeIdentity" => $idType)
+        )
+        ) {
+            $this->db->Insert(
+                "identities__users",
+                array("idIdentity" => $this->db->getPDO()->lastInsertId(), "idUser" => $this->auth->getUser()->id)
+            );
+        }
     }
 
 }
