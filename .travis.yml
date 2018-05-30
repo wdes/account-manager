@@ -16,9 +16,7 @@ env:
     - CI_TYPE=phpunit
 
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then ./cc-test-reporter before-build; fi
+  - ./scripts/ci/install-reporters.sh
   - ./scripts/ci/install.sh
 
 script:
@@ -36,6 +34,7 @@ after_success:
 
 after_script:
   - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then ./scripts/ci/codeclimate.sh; fi
+  - ./codacy-coverage.phar clover build/logs/clover.xml
 
 matrix:
   fast_finish: true
