@@ -6,7 +6,7 @@
 [![LOC](https://img.shields.io/badge/LOC-3052-brightgreen.svg?user=wdes&repo=account-manager)](https://github.com/raptortech-js/sloc-shields)
 [![GitHub license](https://img.shields.io/github/license/wdes/account-manager.svg)](https://github.com/wdes/account-manager/blob/master/LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d760bad48cb4419c96e5a279a8c30b8c)](https://www.codacy.com/app/wdes/account-manager?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wdes/account-manager&amp;utm_campaign=Badge_Grade)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d760bad48cb4419c96e5a279a8c30b8c)](https://www.codacy.com/app/wdes/account-manager?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wdes/account-manager&amp;utm_campaign=Badge_Coverage)
 
 Find SPOF in your accounts !
 
