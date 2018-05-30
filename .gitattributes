@@ -1,5 +1,6 @@
 *.min.css linguist-generated=true
 *.min.js linguist-generated=true 
+scripts/markdownlint.rb linguist-generated=true
 public/assets/fonts/* linguist-detectable=false
 *.scss linguist-detectable=false
 sql/* linguist-detectable=false

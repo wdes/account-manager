@@ -13,8 +13,8 @@ else
     sudo mysqld_safe --skip-grant-tables --user=root &
     sleep 4
     mysql -u root -e "update mysql.user set authentication_string=PASSWORD('$BDD_PWD') where User='root' and host='%'; update mysql.user set plugin='mysql_native_password'; delete from mysql.user where User != 'root' OR host != '%'; FLUSH PRIVILEGES;"
-    sudo kill -9 "$(sudo cat /var/lib/mysql/mysqld_safe.pid)"
-    sudo kill -9 "$(sudo cat /var/run/mysqld/mysqld.pid)"
+    sudo kill -9 $(sudo cat /var/lib/mysql/mysqld_safe.pid)
+    sudo kill -9 $(sudo cat /var/run/mysqld/mysqld.pid)
     sudo /etc/init.d/mysql start
     sleep 4
 fi;
