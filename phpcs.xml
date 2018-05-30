@@ -7,7 +7,7 @@
     <!-- https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
     <description>Wdes PHP_CodeSniffer custom coding standard</description>
 
-    <file>../</file>
+    <file>.</file>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/sql/*</exclude-pattern>

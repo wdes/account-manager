@@ -1,13 +1,5 @@
 <?php
 declare(strict_types = 1);
-/**
-  * @uses \PDO
-  * @author William Desportes
-  * Gère les interactions avec la BDD
-  * Tout est fait en requêtes préparés
-  */
-
-
 namespace AccountManager;
 
 use \AccountManager\Config;
@@ -15,6 +7,12 @@ use \PDO;
 use \PDOStatement;
 use \stdClass;
 
+/**
+  * Gère les interactions avec la BDD
+  * Tout est fait en requêtes préparés
+  * @uses \PDO
+  * @author William Desportes <williamdes@wdes.fr>
+  */
 class Database
 {
     private $bdd;
@@ -104,10 +102,9 @@ class Database
      */
     public function Insert(string $tableName, array $kvalues, array $duplicateReplace = null): bool
     {
-        $executeValues = array();
-        $sql           = "INSERT INTO $tableName SET ";
-        $w             = self::processConditions($kvalues);
-        $sql          .= $w->sql;
+        $sql  = "INSERT INTO $tableName SET ";
+        $w    = self::processConditions($kvalues);
+        $sql .= $w->sql;
         if (is_array($duplicateReplace)) {
             $ww    = self::processConditions($duplicateReplace, " ON DUPLICATE KEY UPDATE ", count($kvalues));
             $sql  .= $ww->sql;

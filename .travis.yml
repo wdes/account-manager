@@ -55,15 +55,15 @@ cache:
     - $HOME/.composer/cache/
     - $HOME/.cache/bower
     - $HOME/.npm
+    - $HOME/.cache/ci
     - /var/cache/apt
     - ~/Library/Caches/Homebrew
 
 addons:
   apt:
-    update: true
+    update: false
     packages:
     - git
     - mysql-server
-    - nginx
     sources:
       - mysql-5.7-trusty
