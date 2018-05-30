@@ -17,5 +17,5 @@ brew install php72 gettext
 brew link gettext --force
 sed -i -e 's/^memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/7.2/php.ini
 curl https://getcomposer.org/installer | php
-ln -s "`pwd`/composer.phar" /usr/local/bin/composer
+ln -s "$(pwd)/composer.phar" /usr/local/bin/composer
 mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('toor'); FLUSH PRIVILEGES;"
