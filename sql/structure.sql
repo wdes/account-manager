@@ -16,10 +16,10 @@ USE `accountmanager`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `auths` (
-  `id` int(11) unsigned NOT NULL COMMENT 'Id',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id',
   `label` varchar(255) NOT NULL COMMENT 'Label',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -30,15 +30,15 @@ CREATE TABLE `auths__websites` (
   KEY `auth__website__idWebsite` (`idWebsite`),
   CONSTRAINT `auth__website__idAuth` FOREIGN KEY (`idAuth`) REFERENCES `auths` (`id`),
   CONSTRAINT `auth__website__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `domains` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id',
-  `domain` varchar(255) NOT NULL COMMENT 'Domain',
+  `domainName` varchar(255) NOT NULL COMMENT 'Domain name',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -49,7 +49,7 @@ CREATE TABLE `identities` (
   PRIMARY KEY (`id`),
   KEY `identities__idTypeIdentity` (`idTypeIdentity`),
   CONSTRAINT `identities__idTypeIdentity` FOREIGN KEY (`idTypeIdentity`) REFERENCES `identities__types` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -57,15 +57,29 @@ CREATE TABLE `identities__types` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id',
   `label` varchar(255) NOT NULL COMMENT 'Label',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `identities__users` (
   `idIdentity` int(11) unsigned NOT NULL COMMENT 'Id identity',
   `idUser` int(11) unsigned NOT NULL COMMENT 'Id user',
-  PRIMARY KEY (`idIdentity`,`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idIdentity`,`idUser`),
+  KEY `identities__users__idUser` (`idUser`),
+  CONSTRAINT `identities__users__idIdentity` FOREIGN KEY (`idIdentity`) REFERENCES `identities` (`id`),
+  CONSTRAINT `identities__users__idUser` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `identities__websites` (
+  `idWebsite` int(11) unsigned NOT NULL COMMENT 'Id website',
+  `idIdentity` int(11) unsigned NOT NULL COMMENT 'Id identity',
+  KEY `identities__websites__idIdentity` (`idIdentity`),
+  KEY `identities__websites__idWebsite` (`idWebsite`),
+  CONSTRAINT `identities__websites__idIdentity` FOREIGN KEY (`idIdentity`) REFERENCES `identities` (`id`),
+  CONSTRAINT `identities__websites__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -80,24 +94,19 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users__websites` (
-  `idUser` int(11) unsigned NOT NULL COMMENT 'Id user',
-  `idWebsite` int(11) unsigned NOT NULL COMMENT 'Id website',
-  PRIMARY KEY (`idUser`,`idWebsite`),
-  KEY `users__websites__idWebsite` (`idWebsite`),
-  CONSTRAINT `users__websites__idUser` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`),
-  CONSTRAINT `users__websites__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `websites` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Website ID',
   `label` varchar(255) NOT NULL COMMENT 'Label',
-  `idAuth` int(10) unsigned DEFAULT NULL COMMENT 'Auth  ID',
   `cantDelete` enum('1','0') NOT NULL DEFAULT '0' COMMENT 'User can not delete himself his account',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Websites';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='Websites';
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `websites__auths` (
+  `idAuth` int(11) unsigned NOT NULL COMMENT 'Id auth',
+  `idWebsite` int(11) unsigned NOT NULL COMMENT 'id website'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -108,7 +117,7 @@ CREATE TABLE `websites__domains` (
   KEY `websites__domains__idDomain` (`idDomain`),
   CONSTRAINT `websites__domains__idDomain` FOREIGN KEY (`idDomain`) REFERENCES `domains` (`id`),
   CONSTRAINT `websites__domains__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -116,7 +125,18 @@ CREATE TABLE `websites__public` (
   `idWebsite` int(11) unsigned NOT NULL COMMENT 'Id website',
   PRIMARY KEY (`idWebsite`),
   CONSTRAINT `websites__public__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `websites__users` (
+  `idUser` int(11) unsigned NOT NULL COMMENT 'Id user',
+  `idWebsite` int(11) unsigned NOT NULL COMMENT 'Id website',
+  PRIMARY KEY (`idUser`,`idWebsite`),
+  KEY `users__websites__idWebsite` (`idWebsite`),
+  CONSTRAINT `users__websites__idUser` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`),
+  CONSTRAINT `users__websites__idWebsite` FOREIGN KEY (`idWebsite`) REFERENCES `websites` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
