@@ -40,6 +40,9 @@ matrix:
   fast_finish: true
   include:
     - php: "7.2"
+      env: CI_TYPE=phpstan
+
+    - php: "7.2"
       env: CI_TYPE=phpcs
 
     - os: osx
