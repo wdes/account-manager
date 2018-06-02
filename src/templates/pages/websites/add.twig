@@ -1,0 +1,52 @@
+{% extends 'base+login.twig' %}
+
+{% block title %}{% trans "new website" %}{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <h1>
+            {% trans "Add a new website" %}
+            <small>{% trans "new website" %}</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="box">
+            <div class="box-body">
+                <form class="form-horizontal" method="post" action="websites.php">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="identityId" class="col-sm-2 control-label">{% trans "Identity" %}</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="identityId" id="identityId">
+                                    {% for identity in identities.identities() %}
+                                        <option value="{{ identity.idId }}">{{ identity.typeLabel }}: {{ identity.valueId }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dom" class="col-sm-2 control-label">{% trans "Domain name" %}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="domainName" class="form-control" id="dom" placeholder="{% trans "domain.xyz" %}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cbd" class="col-sm-2 control-label">&nbsp;</label>
+                            <div class="checkbox">
+                                <label for="cbd" class="control-label">
+                                    <input type="checkbox" name="cbd" value="1" id="cbd">
+                                    {% trans "The account can be deleted without asking anyone." %}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a href="?" class="btn btn-default">{% trans "Cancel" %}</a>
+                        <button type="submit" name="action" value="add" class="btn btn-info pull-right">{% trans "Save" %}</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

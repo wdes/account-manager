@@ -2,18 +2,19 @@
 declare(strict_types = 1);
 require_once __DIR__.'/src/AutoLoad.php';
 
-$identities = new \AccountManager\Identities($db, $auth);
-$renderArray = array('identities' => $identities);
+$auths = new \AccountManager\Auths($db, $auth);
+$renderArray = array('auths' => $auths);
 
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {
         case 'add':
-            $identities->add((int) $_POST['type'], $_POST['value']);
+            $auths->add($_POST['label']);
             break;
     }
 }
+
 if ($auth->isLoggedIn()) {
-    echo $twig->render('pages/identities/index.twig', $renderArray);
+    echo $twig->render('pages/auths/index.twig', $renderArray);
 } else {
     header('Location: login.php');
 }
