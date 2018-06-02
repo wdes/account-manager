@@ -7,10 +7,6 @@
         stderr="true"
 >
 
-    <exclude-pattern>*/node_modules/*</exclude-pattern>
-    <exclude-pattern>*/tmp/*</exclude-pattern>
-    <exclude-pattern>*/vendor/*</exclude-pattern>
-
     <filter>
         <whitelist>
             <directory>../src</directory>
