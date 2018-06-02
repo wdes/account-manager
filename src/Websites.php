@@ -46,7 +46,7 @@ class Websites
     /**
      * Get the websites of the user
      *
-     * @return stdClass[]
+     * @return \stdClass[]
      */
     public function websites(): array
     {

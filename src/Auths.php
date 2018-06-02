@@ -45,7 +45,7 @@ class Auths
     /**
      * Get the auths
      *
-     * @return stdClass[]
+     * @return \stdClass[]
      */
     public function auths(): array
     {

@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace AccountManager\Html;
+namespace AccountManager\Authentification;
 
 use PHPUnit\Framework\TestCase;
 use \AccountManager\Authentification\Authentification;

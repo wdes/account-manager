@@ -46,7 +46,7 @@ class Identities
     /**
      * Get the identities of the user
      *
-     * @return stdClass[]
+     * @return \stdClass[]
      */
     public function identities(): array
     {
@@ -73,7 +73,7 @@ class Identities
     /**
      * Get the identity types
      *
-     * @return stdClass[]
+     * @return \stdClass[]
      */
     public function types(): array
     {

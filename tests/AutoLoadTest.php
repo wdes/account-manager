@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace AccountManager\Twig;
+namespace AccountManager;
 
 use PHPUnit\Framework\TestCase;
 use \Twig_Environment;
