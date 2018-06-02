@@ -1,0 +1,3 @@
+parameters:
+	bootstrap: %rootDir%/../../../src/bootstrap.php
+

@@ -1,9 +1,6 @@
 <?php
 declare(strict_types = 1);
-require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/Constants.php';
-set_include_path(SRC_DIR);
-\PhpMyAdmin\MoTranslator\Loader::loadFunctions();
+require_once __DIR__.'/bootstrap.php';
 // Configure
 _setlocale(LC_MESSAGES, 'fr');
 _textdomain('account-manager');
