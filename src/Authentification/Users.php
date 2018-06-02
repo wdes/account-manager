@@ -45,11 +45,11 @@ class Users
      *
      * @param string $username The username
      * @param string $password The password
-     * @return bool|stdClass
+     * @return stdClass
      */
     public function login(string $username, string $password): stdClass
     {
-        $res  = $this->db->Select(
+        $res    = $this->db->Select(
             "*",
             "users",
             array(
@@ -57,9 +57,12 @@ class Users
             "password" => $password
             )
         );
-        $user = $res->fetch(PDO::FETCH_OBJ);
-        if ($user === false) {
-            $user = new stdClass();
+        $user   = new stdClass();
+        $userDB = $res->fetch(PDO::FETCH_OBJ);
+        if ($userDB !== false) {
+            $user->id       = $userDB->id;
+            $user->username = $userDB->username;
+            $user->verified = ($userDB->verified === "1");
         }
         $user->success = $res->rowCount() === 1;
         return $user;

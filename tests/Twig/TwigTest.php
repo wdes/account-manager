@@ -12,7 +12,7 @@ class TwigTest extends TestCase
     /**
      * testInstance
      *
-     * @return Twig
+     * @return Twig_Environment
      */
     public function testInstance(): Twig_Environment
     {
