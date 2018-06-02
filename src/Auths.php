@@ -62,7 +62,7 @@ class Auths
     /**
      * Add an auth
      *
-     * @param string  $label  The label
+     * @param string $label The label
      * @return void
      */
     public function add(string $label): void

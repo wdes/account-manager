@@ -63,8 +63,8 @@ class Websites
     /**
      * Add a website
      *
-     * @param integer $idIdentity Id of identity
-     * @param string $domainName The domain name
+     * @param integer $idIdentity   Id of identity
+     * @param string  $domainName   The domain name
      * @param boolean $canBeDeleted The account can be deleted (on website)
      * @return void
      */

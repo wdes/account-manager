@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 require_once __DIR__.'/src/AutoLoad.php';
 
-$identities = new \AccountManager\Identities($db, $auth);
+$identities  = new \AccountManager\Identities($db, $auth);
 $renderArray = array('identities' => $identities);
 
 if (isset($_POST['action'])) {
