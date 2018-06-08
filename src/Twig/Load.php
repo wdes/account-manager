@@ -48,6 +48,13 @@ class Load
                 }
             )
         );
+        $twig->addFunction(
+            new Twig_SimpleFunction(
+                'toJson', function ($code) {
+                    return new Twig_Markup(json_encode($code, JSON_PRETTY_PRINT), "utf-8");
+                }
+            )
+        );
 
         $twig->addExtension(new I18nExtension());
         $twig->addGlobal('_post', $_POST);

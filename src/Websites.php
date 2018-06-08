@@ -61,6 +61,27 @@ class Websites
     }
 
     /**
+     * Get the relation between websites and identities
+     *
+     * @return \stdClass[]
+     */
+    public function websitesIdentities(): array
+    {
+        $obj = $this->db->Select(
+            array("idWebsite", "idIdentity"), array("identities__websites"),
+            array(
+                array(
+                "idWebsite",
+                "IN",
+                "(SELECT wu.idWebsite FROM websites__users wu WHERE wu.idUser=:idUser)",
+                array("idUser" => $this->auth->getUser()->id)
+                )
+            )
+        );
+        return $obj->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
      * Add a website
      *
      * @param integer $idIdentity   Id of identity

@@ -65,8 +65,25 @@ class Database
             $i++;
 
             if (is_array($value)) {
-                $out->sql       .= "`".$value[0]."` ".$value[1]." :p$i";
-                $out->ks[":p$i"] = $value[2];
+                $isSubRequest = false;
+                if (\substr($value[2], 0, 1) === "("
+                    && \substr($value[2], \strlen($value[2]) - 1, 1) === ")"
+                ) {
+                    $isSubRequest = true;
+                }
+
+                if ($isSubRequest) {
+                    $out->sql .= "`".$value[0]."` ".$value[1]." ".$value[2];
+                    if (count($value) === 4) {
+                        foreach ($value[3] as $key => $value) {
+                            $out->ks[$key] = $value;
+                        }
+                    }
+                } else {
+                    $out->sql       .= "`".$value[0]."` ".$value[1]." :p$i";
+                    $out->ks[":p$i"] = $value[2];
+                }
+
             } else {
                 $is_join = false;
                 if ($joincheck) {
@@ -155,7 +172,6 @@ class Database
         $sql .= " FROM ".$tableName;
         $w    = self::processConditions($wheres, " WHERE ", 0, $multi_tables, "AND");
         $sql .= $w->sql;
-
         $req = $this->bdd->prepare($sql);
         $req->execute($w->ks);
         return $req;

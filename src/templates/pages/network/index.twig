@@ -1,0 +1,55 @@
+{% extends 'base+login.twig' %}
+
+{% block head %}
+    <script type="text/javascript" src="{{ asset('js/vis.min.js') }}"></script>
+    <link href="{{ asset('css/vis-network.min.css') }}" media="all" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block title %}{% trans "Account network" %}{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <h1>
+            {% trans "My account network" %}
+            <small>{% trans "my account network" %}</small>
+        </h1>
+    </section>
+
+    <section class="content" id="content-network">
+            <div id="network" style="height: 100%"></div>
+    </section>
+{% endblock %}
+{% block foot %}
+<script type="text/javascript">
+function draw() {
+    // create an array with nodes
+    nodes = new vis.DataSet();
+    /*nodes.on('*', function () {
+        document.getElementById('nodes').innerHTML = JSON.stringify(nodes.get(), null, 4);
+    });*/
+    nodes.add({{ toJson(nodes) }});
+
+    // create an array with edges
+    edges = new vis.DataSet();
+    /*edges.on('*', function () {
+        document.getElementById('edges').innerHTML = JSON.stringify(edges.get(), null, 4);
+    });*/
+    edges.add({{ toJson(edges) }});
+
+    // create a network
+    var container = document.getElementById('network');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+    network = new vis.Network(container, data, options);
+
+}
+
+window.onload = function() {
+    var height = Math.round(window.innerHeight * 0.80) + 'px';
+    document.getElementById("content-network").style.height = height;
+    draw();
+}
+</script>
+{% endblock %}
