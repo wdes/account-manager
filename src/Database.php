@@ -66,10 +66,12 @@ class Database
 
             if (is_array($value)) {
                 $isSubRequest = false;
-                if (\substr($value[2], 0, 1) === "("
-                    && \substr($value[2], \strlen($value[2]) - 1, 1) === ")"
-                ) {
-                    $isSubRequest = true;
+                if (\is_string($value[2])) {
+                    if (\substr($value[2], 0, 1) === "("
+                        && \substr($value[2], \strlen($value[2]) - 1, 1) === ")"
+                    ) {
+                        $isSubRequest = true;
+                    }
                 }
 
                 if ($isSubRequest) {
@@ -172,7 +174,7 @@ class Database
         $sql .= " FROM ".$tableName;
         $w    = self::processConditions($wheres, " WHERE ", 0, $multi_tables, "AND");
         $sql .= $w->sql;
-        $req = $this->bdd->prepare($sql);
+        $req  = $this->bdd->prepare($sql);
         $req->execute($w->ks);
         return $req;
     }

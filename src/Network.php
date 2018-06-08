@@ -44,23 +44,34 @@ class Network
     /**
      * Get the network of the user
      *
-     * @return stdClass the visJS network with nodes and edges
+     * @return stdClass the visJS network with nodes, edges, groups
      */
     public function buildNetwork(): stdClass
     {
         $out        = new stdClass();
         $out->nodes = array();
         $out->edges = array();
+
+        $groupIDS             = new stdClass();
+        $groupIDS->id         = "ids";
+        $groupIDS->label      = "Identities";
+        $groupWebsites        = new stdClass();
+        $groupWebsites->id    = "webs";
+        $groupWebsites->label = "Websites";
+        $out->groups          = array($groupIDS, $groupWebsites);
+
         foreach ($this->identities->identities() as $identity) {
             $newNode        = new stdClass();
             $newNode->id    = "id:".$identity->idId;
             $newNode->label = $identity->valueId;
+            $newNode->group = $groupIDS->id;
             $out->nodes[]   = $newNode;
         }
         foreach ($this->websites->websites() as $website) {
             $newNode        = new stdClass();
             $newNode->id    = "web:".$website->id;
             $newNode->label = $website->label;
+            $newNode->group = $groupWebsites->id;
             $out->nodes[]   = $newNode;
         }
         foreach ($this->websites->websitesIdentities() as $websiteIdentity) {

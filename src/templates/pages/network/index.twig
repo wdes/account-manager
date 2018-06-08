@@ -34,14 +34,25 @@ function draw() {
         document.getElementById('edges').innerHTML = JSON.stringify(edges.get(), null, 4);
     });*/
     edges.add({{ toJson(edges) }});
+    groups = new vis.DataSet();
+    groups.add({{ toJson(groups) }});
 
     // create a network
     var container = document.getElementById('network');
     var data = {
         nodes: nodes,
-        edges: edges
+        edges: edges,
+        groups: groups,
     };
-    var options = {};
+    var options = {
+        hierarchicalLayout: {
+            enabled:false,
+            levelSeparation: 150,
+            nodeSpacing: 200,
+            direction: "UD",
+            layout: "hubsize"
+        }
+    };
     network = new vis.Network(container, data, options);
 
 }

@@ -6,7 +6,8 @@ $network     = new \AccountManager\Network($db, $auth);
 $networkData = $network->buildNetwork();
 $nodes       = $networkData->nodes;
 $edges       = $networkData->edges;
-$renderArray = array('nodes' => $nodes, 'edges' => $edges);
+$groups      = $networkData->groups;
+$renderArray = array('nodes' => $nodes, 'edges' => $edges, 'groups' => $groups);
 
 if ($auth->isLoggedIn()) {
     echo $twig->render('pages/network/index.twig', $renderArray);
