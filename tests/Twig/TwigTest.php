@@ -4,7 +4,9 @@ namespace AccountManager\Twig;
 
 use PHPUnit\Framework\TestCase;
 use \Twig_Environment;
+use \Twig_Cache_Filesystem;
 use \AccountManager\Twig\Load;
+use \stdClass;
 
 class TwigTest extends TestCase
 {
@@ -21,6 +23,24 @@ class TwigTest extends TestCase
         $Twig = Load::getTwig();
         $this->assertInstanceOf(Twig_Environment::class, $Twig);
         return $Twig;
+    }
+
+    /**
+     * test get Twig
+     * @return void
+     */
+    public function testGetTwig(): void
+    {
+        $this->assertInstanceOf(Twig_Environment::class, Load::getTwig());
+    }
+
+    /**
+     * test get Twig cache FS
+     * @return void
+     */
+    public function testGetTwigCacheFS(): void
+    {
+        $this->assertInstanceOf(Twig_Cache_Filesystem::class, Load::getTwigCacheFS());
     }
 
     /**
@@ -52,7 +72,7 @@ class TwigTest extends TestCase
     }
 
     /**
-     * testEscapeHtml
+     * test Escape Html
      * @depends testInstance
      * @param Twig_Environment $Twig Twig_Environment instance
      * @return void
@@ -62,6 +82,22 @@ class TwigTest extends TestCase
         $template = $Twig->createTemplate('Hello {{ htmltext }}');
         $html     = $template->render(array('htmltext' => "<b>You</b>"));
         $this->assertEquals("Hello &lt;b&gt;You&lt;/b&gt;", $html);
+        $this->assertNotEmpty($html);
+    }
+
+    /**
+     * test to Json
+     * @depends testInstance
+     * @param Twig_Environment $Twig Twig_Environment instance
+     * @return void
+     */
+    public function testToJson(Twig_Environment $Twig): void
+    {
+        $template = $Twig->createTemplate('toJson > {{ toJson(obj) }}');
+        $obj      = new stdClass();
+        $obj->a   = array();
+        $html     = $template->render(array('obj' => $obj));
+        $this->assertEquals("toJson > {\n    \"a\": []\n}", $html);
         $this->assertNotEmpty($html);
     }
 
