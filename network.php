@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 require_once __DIR__.'/src/AutoLoad.php';
 
-$network     = new \AccountManager\Network($db, $auth);
+$network = new \AccountManager\Network($db, $auth);
 if ($auth->isLoggedIn()) {
     $networkData = $network->buildNetwork();
     $nodes       = $networkData->nodes;

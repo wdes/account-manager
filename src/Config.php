@@ -19,7 +19,7 @@ class Config
     {
         if (is_dir($envDir)) {
             $this->dotenv = new Dotenv($envDir);
-            $this->dotenv->load();
+            $this->dotenv->overload();
         } else {
             throw new Exception("The directory does not exist : $envDir");
         }

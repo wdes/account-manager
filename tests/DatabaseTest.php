@@ -16,7 +16,7 @@ class DatabaseTest extends TestCase
 {
 
     /**
-     * testConnectAndInstance
+     * test Connect And Instance
      *
      * @return Database
      */
@@ -29,7 +29,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testProcessConditionsSingle
+     * test Process Conditions Single
      * @depends testConnectAndInstance
      * @param Database $db Database instance
      * @return void
@@ -48,7 +48,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-      * testProcessConditionsMultiple
+      * test Process Conditions Multiple
       * @depends testConnectAndInstance
       * @param Database $db Database instance
       * @return void
@@ -67,7 +67,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testGetBdd
+     * test Get Bdd
      * @depends testConnectAndInstance
      * @param Database $db Database instance
      * @return Database
@@ -81,7 +81,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testCreateTable
+     * test Create Table
      * @depends testGetBdd
      * @param Database $db Database instance
      * @return Database
@@ -104,7 +104,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectEmptyTableNoCriteria
+     * test Select Empty Table No Criteria
      * @depends testCreateTable
      * @param Database $db Database instance
      * @return void
@@ -117,7 +117,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testInsertTable
+     * test Insert Table
      * @depends testCreateTable
      * @param Database $db Database instance
      * @return Database
@@ -130,7 +130,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableNoCriteria
+     * test Select Table No Criteria
      * @depends testInsertTable
      * @param Database $db Database instance
      * @return void
@@ -141,7 +141,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * verifyCanFindOne
+     * verify Can Find One
      * @depends testInsertTable
      * @param Database $db        Database instance
      * @param string   $akeyvalue Expected value to column 'akey'
@@ -158,7 +158,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testExists
+     * test Exists
      * @depends testInsertTable
      * @param Database $db Database instance
      * @return void
@@ -170,7 +170,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testInsertTableDuplicate
+     * test Insert Table Duplicate
      * @depends testInsertTable
      * @param Database $db Database instance
      * @return Database
@@ -183,7 +183,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableAfterDuplicateNoCriteria
+     * test Select Table After Duplicate No Criteria
      * @depends testInsertTableDuplicate
      * @param Database $db Database instance
      * @return void
@@ -194,7 +194,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testInsertTable2
+     * test Insert Table 2
      * @depends testCreateTable
      * @param Database $db Database instance
      * @return Database
@@ -207,7 +207,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableJoin
+     * test Select Table Join
      * @depends testInsertTable2
      * @param Database $db Database instance
      * @return void
@@ -228,7 +228,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableOperatorNotLike
+     * test Select Table Operator Not Like
      * @depends testInsertTable2
      * @param Database $db Database instance
      * @return void
@@ -255,7 +255,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testSelectTableOperators
+     * test Select Table Operators
      *
      * @dataProvider dataSelectOperatorsProvider
      * @depends testInsertTable2
@@ -276,7 +276,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testDelete
+     * test Delete
      * @depends testInsertTable
      * @param Database $db Database instance
      * @return void
@@ -288,7 +288,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * testDropTable
+     * test Drop Table
      * @depends testCreateTable
      * @param Database $db Database instance
      * @return void

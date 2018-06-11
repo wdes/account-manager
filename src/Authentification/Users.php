@@ -84,4 +84,20 @@ class Users
         ) === false;
     }
 
+    /**
+     * Delete account
+     *
+     * @param string $username The username
+     * @return bool deleted
+     */
+    public function deleteAccount(string $username): bool
+    {
+        return $this->db->Delete(
+            "users",
+            array(
+            "username" => $username
+            )
+        );
+    }
+
 }
