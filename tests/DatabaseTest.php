@@ -247,10 +247,12 @@ class DatabaseTest extends TestCase
     public function dataSelectOperatorsProvider(): array
     {
         return [
-            ["id", "<", 1],
-            ["id", ">", -1],
-            ["akey", "LIKE", "updated"],
-            ["akey", "=", "updated"],
+            [["id", "<", 1]],
+            [["id", ">", -1]],
+            [["akey", "LIKE", "updated"]],
+            [["akey", "=", "updated"]],
+            [["akey", "IN", "(SELECT t1.akey FROM test1 t1)"]],
+            [["akey", "IN", "(SELECT t1.akey FROM test1 t1 WHERE t1.akey like :param1)", array(":param1" => "updated")]],
         ];
     }
 
@@ -259,15 +261,13 @@ class DatabaseTest extends TestCase
      *
      * @dataProvider dataSelectOperatorsProvider
      * @depends testInsertTable2
-     * @param string            $key      The key
-     * @param string            $operator The operator
-     * @param int|string|double $value    The value
-     * @param Database          $db       Database instance
+     * @param array    $wheres Wheres
+     * @param Database $db     Database instance
      * @return void
      */
-    public function testSelectTableOperators(string $key, string $operator, $value, Database $db): void
+    public function testSelectTableOperators(array $wheres, Database $db): void
     {
-        $obj = $db->Select("*", "test1", array(array($key, $operator, $value)));
+        $obj = $db->Select("*", "test1", array($wheres));
         $this->assertInstanceOf(PDOStatement::class, $obj);
         $this->assertEquals(1, $obj->rowCount());
         $row = $obj->fetch(PDO::FETCH_OBJ);

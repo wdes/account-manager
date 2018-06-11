@@ -59,7 +59,7 @@ class ConfigTest extends TestCase
      */
     public function testException(): void
     {
-        $cfg = new Config(self::$dir.str_shuffle("abcdefghijklmnopqrstuv"));
+        new Config(self::$dir.str_shuffle("abcdefghijklmnopqrstuv"));
     }
 
     /**

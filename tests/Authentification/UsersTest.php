@@ -15,7 +15,7 @@ class UsersTest extends TestCase
      *
      * @var stdClass
      */
-    private static $testUser;
+    public static $testUser;
 
     /**
      * Generate random user
