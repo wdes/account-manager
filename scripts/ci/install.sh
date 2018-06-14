@@ -31,22 +31,3 @@ echo -e "DB_HOST=localhost\r\nDB_USER=root\r\nDB_NAME=accountmanager\r\nDB_PASS=
 cp $ME/../../.env $ME/../../tests/.env
 echo "Database password: $BDD_PWD"
 cat $ME/../../tests/.env
-# TEMP fix
-wget https://raw.githubusercontent.com/phpmyadmin/phpmyadmin/master/libraries/classes/Twig/I18nExtension.php -O $ME/../../src/Twig/I18nExtension.php
-mkdir -p $ME/../../src/Twig/I18n
-wget https://raw.githubusercontent.com/phpmyadmin/phpmyadmin/master/libraries/classes/Twig/I18n/NodeTrans.php -O $ME/../../src/Twig/I18n/NodeTrans.php
-wget https://raw.githubusercontent.com/phpmyadmin/phpmyadmin/master/libraries/classes/Twig/I18n/TokenParserTrans.php -O $ME/../../src/Twig/I18n/TokenParserTrans.php
-
-PMALICENSEURL="https://raw.githubusercontent.com/phpmyadmin/phpmyadmin/master/LICENSE"
-
-if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then
-    find "$ME/../../src/Twig" -type f -name '*.php' -exec sed -i '' -e 's,PhpMyAdmin,AccountManager,g' {} \;
-    # Who care about vim :)
-    find "$ME/../../src/Twig" -type f -name '*.php' -exec sed -i '' -e "s,vim: set expandtab sw=4 ts=4 sts=4:,LICENSE : $PMALICENSEURL,g" {} \;
-else
-    find "$ME/../../src/Twig" -type f -name '*.php' -exec sed -i 's,PhpMyAdmin,AccountManager,g' {} +
-    # Who care about vim :)
-    find "$ME/../../src/Twig" -type f -name '*.php' -exec sed -i "s,vim: set expandtab sw=4 ts=4 sts=4:,LICENSE : $PMALICENSEURL,g" {} +
-fi;
-
-
