@@ -9,7 +9,3 @@ public/assets/js/bundle.js
 .env
 build/
 \.php_cs\.cache
-
-src/Twig/I18nExtension\.php
-src/Twig/I18n/NodeTrans\.php
-src/Twig/I18n/TokenParserTrans\.php

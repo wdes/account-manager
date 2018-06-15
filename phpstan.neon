@@ -1,5 +1,2 @@
 parameters:
 	bootstrap: %rootDir%/../../../src/bootstrap.php
-	excludes_analyse:
-		- %rootDir%/../../../src/Twig/I18n/*
-		- %rootDir%/../../../src/Twig/I18nExtension.php
