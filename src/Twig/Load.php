@@ -8,7 +8,7 @@ use \Twig_Loader_Filesystem;
 use \Twig_SimpleFunction;
 use \Twig_Markup;
 use \Locale;
-use \AccountManager\Twig\I18nExtension;
+use \Wdes\PIL\Twig\Extension\I18n as I18nExtension;
 
 class Load
 {
@@ -24,9 +24,14 @@ class Load
     public static function init(string $tmpDir): void
     {
         global $twig;
-        Load::$cacheFS = new Twig_Cache_Filesystem($tmpDir);
-        $loader        = new Twig_Loader_Filesystem(TEMPLATE_DIR);
-        $twig          = new Twig_Environment(
+        Load::$cacheFS              = new Twig_Cache_Filesystem($tmpDir);
+        $loader                     = new Twig_Loader_Filesystem(TEMPLATE_DIR);
+        $moReader                   = new \Wdes\PIL\plugins\MoReader(
+            array("localeDir" => LOCALE_DIR)
+        );
+        $data                       = $moReader->readFile(LOCALE_DIR."fr/LC_MESSAGES/account-manager.mo");
+        \Wdes\PIL\Launcher::$plugin = $moReader;
+        $twig                       = new Twig_Environment(
             $loader, array(
             'cache' => Load::$cacheFS,
             'debug' => true

@@ -88,17 +88,21 @@ class Database
 
             } else {
                 $is_join = false;
+                $keydots = array();
+                $dotkey  = preg_match("!([0-9A-Za-z_-]+)([.]{1})([0-9A-Za-z_-]+)!", (string) $key, $keydots);
                 if ($joincheck) {
-                    $is_join = (
-                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", (string) $key)
-                        &&
-                        preg_match("!([0-9A-Za-z]+).([0-9A-Za-z]+)!", (string) $value)
+                    $is_join = ($dotkey &&
+                        preg_match("!([0-9A-Za-z_-]+)([.]{1})([0-9A-Za-z_-]+)!", (string) $value)
                     );
                 }
                 if ($is_join) {
                     $out->sql .= "$key=$value";
                 } else {
-                    $out->sql       .= "`$key`=:p$i";
+                    if ($dotkey) {
+                        $out->sql .= "`$keydots[1]`.`$keydots[3]`=:p$i";
+                    } else {
+                        $out->sql .= "`$key`=:p$i";
+                    }
                     $out->ks[":p$i"] = $value;
                 }
             }
