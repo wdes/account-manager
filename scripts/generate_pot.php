@@ -52,7 +52,10 @@ $templates->from          = $tmpDir;
 $templates->to            = "";
 $mappings->replacements[] = $templates;
 
-
+$templates                = new stdClass();
+$templates->from          = PROJECT_ROOT;
+$templates->to            = "";
+$mappings->replacements[] = $templates;
 
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(TEMPLATE_DIR), RecursiveIteratorIterator::LEAVES_ONLY) as $tmpl) {
 
