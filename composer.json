@@ -23,7 +23,8 @@
         "twig/extensions": "^1.5",
         "symfony/dotenv": "^4.0",
         "phpmailer/phpmailer": "^6.0",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "wdes/php-i18n-l10n": "dev-dev"
     },
     "autoload": {
         "psr-4": {

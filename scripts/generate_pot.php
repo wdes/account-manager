@@ -81,7 +81,7 @@ exec(
     ' --copyright-holder="William Desportes"'.
     ' --msgid-bugs-address=williamdes@wdes.fr'.
     ' --from-code=utf-8'.
-    ' --keyword=__ --keyword=_gettext --keyword=_pgettext:1c,2 --keyword=_ngettext:1,2'.
+    ' --keyword=gettext --keyword=pgettext:1c,2 --keyword=ngettext:1,2'.
     ' -p ./locale'.
     ' --from-code=UTF-8'.
     ' --add-comments=l10n'.
