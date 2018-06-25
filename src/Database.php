@@ -167,14 +167,17 @@ class Database
     {
         $sql          = "SELECT ";
         $multi_tables = is_array($tableName);
-        if ($multi_tables) {
+        if (is_array($tableName)) {// phpstan workaround
             $tableName = implode(",", $tableName);
         }
+        $columns = "";
         if (is_array($cols)) {
-            $cols = implode(",", $cols);
+            $columns = implode(",", $cols);
+        } else {
+            $columns = $cols;
         }
 
-        $sql .= $cols;
+        $sql .= $columns;
         $sql .= " FROM ".$tableName;
         $w    = self::processConditions($wheres, " WHERE ", 0, $multi_tables, "AND");
         $sql .= $w->sql;

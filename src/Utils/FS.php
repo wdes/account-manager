@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace AccountManager\Utils;
 
+use \Exception;
+
 class FS
 {
 
@@ -14,17 +16,22 @@ class FS
      */
     public static function rmdirRecursive(string $dir): void
     {
-        foreach (scandir($dir) as $file) {
-            if ('.' === $file || '..' === $file) {
-                continue;
+        $items = scandir($dir);
+        if ($items === false) {
+            throw new Exception("Directory does not exist !");
+        } else {
+            foreach ($items as $file) {
+                if ('.' === $file || '..' === $file) {
+                    continue;
+                }
+                if (is_dir("$dir/$file")) {
+                    \AccountManager\Utils\FS::rmdirRecursive("$dir/$file");
+                } else {
+                    unlink("$dir/$file");
+                }
             }
-            if (is_dir("$dir/$file")) {
-                \AccountManager\Utils\FS::rmdirRecursive("$dir/$file");
-            } else {
-                unlink("$dir/$file");
-            }
+            rmdir($dir);
         }
-        rmdir($dir);
     }
 
 }
